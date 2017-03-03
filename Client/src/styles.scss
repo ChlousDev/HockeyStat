@@ -1,0 +1,30 @@
+@import "theme";
+// You can add global styles to this file that will cascade like normal CSS
+
+// Active icon color in list nav
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: mat-color($accent);
+}
+
+.mat-checkbox-indeterminate.mat-warn .mat-checkbox-background, .mat-checkbox-checked.mat-warn .mat-checkbox-background{
+    background-color: mat-color($warn);
+}
+
+.mat-checkbox-indeterminate.mat-warn .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background{
+    background-color: mat-color($primary);
+}
+
+.primary-color{
+  background: mat-color($primary);
+  color: mat-contrast($primary, 800);
+}
+
+.accent-color{
+  background: mat-color($accent);
+  color: mat-contrast($accent, A700);
+}
+
+.warn-color{
+  background: mat-color($warn);
+  color: mat-contrast($warn, A400);
+}

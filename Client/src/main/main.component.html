@@ -1,0 +1,28 @@
+<div fxLayout="column">
+  <div fxLayout="row">
+    <h1>
+      Hockey Statistik
+    </h1>
+  </div>
+  <div fxLayout="row" class="primary-color" style="height: 55px">
+    <div><a md-button class="mat-accent" routerLink="/standings" style="margin-top: 10px;">Tabelle</a></div>
+    <div><a md-button class="mat-accent" routerLink="/teamPointChart" style="margin-top: 10px;">Punkteentwicklung</a></div>
+    <div><a md-button class="mat-accent" routerLink="/comparison" style="margin-top: 10px;">Direktvergleich</a></div>
+    <div><a md-button class="mat-accent" routerLink="/teamStatistics" style="margin-top: 10px;">Teamstatistik</a></div>
+    <div><a md-button class="mat-accent" routerLink="/games" style="margin-top: 10px;">Games</a></div>
+    <div><a md-button class="mat-accent" routerLink="/teams" style="margin-top: 10px;">Teams</a></div>
+    <div><a md-button class="mat-accent" routerLink="/seasons" style="margin-top: 10px;">Seasons</a></div>
+    <div fxFlex></div>
+    <!--<div>
+      <a md-button class="mat-accent" routerLink="/seasons">
+        <md-icon class="icon-size-42">verified_user</md-icon>
+      </a>
+    </div>-->
+    <div>
+      <a md-button class="mat-accent" routerLink="/seasons">
+        <md-icon class="icon-size-42">account_box</md-icon>
+      </a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

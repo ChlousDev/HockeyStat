@@ -1,0 +1,17 @@
+@import '~@angular/material/core/theming/all-theme';
+@include mat-core();
+$primary: mat-palette($mat-cyan, 400); 
+$accent: mat-palette($mat-indigo, 500);
+$warn: mat-palette($mat-red, 500);
+$mat-light-theme-background: (
+  status-bar: map_get($mat-grey, 300),
+  app-bar:    map_get($mat-grey, 100),
+  background: map_get($mat-blue-grey, 100),
+  hover:      rgba(black, 0.04), // TODO(kara): check style with Material Design UX
+  card:       white,
+  dialog:     white,
+  disabled-button: rgba(black, 0.12),
+  raised-button: white,
+);
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
