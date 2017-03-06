@@ -1,0 +1,26 @@
+<div class="primary-color" style="min-width: 300px; height: 30px; margin-bottom: 15px">
+    <h2 md-dialog-title style="padding-top: 5px; padding-left: 5px">
+        Login
+    </h2>
+</div>
+<md-dialog-content>
+    <div fxLayout="column">
+        <div fxLayout="row">
+            <md-input-container>
+                <input mdInput [(ngModel)]="userName" placeholder="Username">
+            </md-input-container>
+        </div>
+        <div fxLayout="row">
+            <md-input-container>
+                <input type="password" mdInput [(ngModel)]="password" placeholder="Passwort">
+            </md-input-container>
+        </div>
+    </div>
+</md-dialog-content>
+<md-dialog-actions>
+    <div fxLayout="column" fxFlexFill>
+        <div fxLayout="row-reverse">
+            <button md-button md-dialog-close class="mat-accent" (click)=login()>Login</button>
+        </div>
+    </div>
+</md-dialog-actions>

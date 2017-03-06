@@ -1,19 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 h1 {
-    font-size: 3em
+    font-size: 3em;
 }
 
-.icon-size-42
-{
+h2 {
+    font-size: 2.5em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.5em;
+}
+
+h5 {
+    font-size: 1.3em;
+}
+
+h6 {
+    font-size: 1.1em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-before: 0em;
+}
+
+th {
+    text-align: left;
+}
+
+.icon-size-42 {
  font-size: 42px;
  height: 42px ;
  width: 42px ;
 }
 
-.icon-size-20
-{
+.icon-size-20 {
  font-size: 20px;
  height: 20px ;
  width: 20px ;
 }
 
+.input-th {
+    padding-left: 5px
+}
+
+td > md-input-container > .mat-input-wrapper {
+    margin: 0em !important;
+}
+
+.buttonTableAlignment{
+    margin-left: -20px !important;
+}
+
+.toolbarLink{
+    margin-top:5px !important;
+}

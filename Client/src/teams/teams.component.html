@@ -1,3 +1,79 @@
-<h1>
-  Teams
-</h1>
+<div fxLayout="column">
+  <div fxLayout="row">
+    <h2>
+      Liste der Teams
+    </h2>
+  </div>
+ <div fxLayout="row" *ngIf=isLoading>
+   <md-spinner></md-spinner>
+ </div>
+  <div fxLayout="row" *ngIf=!isLoading>
+    <table *ngIf=!isAdmin>
+      <thead>
+        <tr>
+          <th style="width: 75px">
+            <h6>Kürzel</h6>
+          </th>
+          <th style="width: 200px">
+            <h6>Name</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams">
+          <td style="width: 75px">{{team.ShortName}}</td>
+          <td style="width: 200px">{{team.Name}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table *ngIf=isAdmin>
+      <thead>
+        <tr>
+          <th class="input-th" style="width: 75px">
+            <h6>Kürzel</h6>
+          </th>
+          <th class="input-th" style="width: 200px">
+            <h6>Name</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 75px">
+            <md-input-container>
+              <input mdInput [(ngModel)]="newTeamShortName">
+            </md-input-container>
+          </td>
+          <td style="width: 200px">
+            <md-input-container>
+              <input mdInput [(ngModel)]="newTeamName">
+            </md-input-container>
+          </td>
+          <td>
+            <button md-icon-button class="mat-accent buttonTableAlignment" (click)=addTeam()>
+              <md-icon class="icon-size-24">save</md-icon>
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let team of teams">
+          <td style="width: 75px">
+            <md-input-container>
+              <input mdInput [(ngModel)]="team.ShortName">
+            </md-input-container>
+          </td>
+          <td style="width: 200px">
+            <md-input-container>
+              <input mdInput [(ngModel)]="team.Name">
+            </md-input-container>
+          </td>
+          <td>
+            <button md-icon-button class="mat-accent buttonTableAlignment" (click)=updateTeam(team)>
+              <md-icon class="icon-size-24">save</md-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

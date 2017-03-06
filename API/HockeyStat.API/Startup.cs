@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json.Serialization;
 
 namespace HockeyStat.API
 {
@@ -39,7 +40,7 @@ namespace HockeyStat.API
             services.AddCors();
 
             // Add framework services.
-            services.AddMvc().AddWebApiConventions();
+            services.AddMvc().AddWebApiConventions().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddRouting();
 
             string connectionString =this.Configuration.GetValue<string>("ConnectionString");
@@ -56,9 +57,11 @@ namespace HockeyStat.API
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseCors(builder =>
-            builder.AllowAnyOrigin()
+            builder.WithOrigins("http://localhost:4200")
                 .AllowAnyHeader()
-                .AllowAnyMethod());
+                .AllowAnyMethod()
+                .WithExposedHeaders("Set-Cookie")
+                .AllowCredentials());
 
             // Route all unknown requests to app root
             app.Use(async (context, next) =>

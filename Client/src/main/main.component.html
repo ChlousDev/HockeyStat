@@ -1,28 +1,30 @@
 <div fxLayout="column">
   <div fxLayout="row">
-    <h1>
+    <h1 style="text-align: center; width:100%">
       Hockey Statistik
     </h1>
   </div>
-  <div fxLayout="row" class="primary-color" style="height: 55px">
-    <div><a md-button class="mat-accent" routerLink="/standings" style="margin-top: 10px;">Tabelle</a></div>
-    <div><a md-button class="mat-accent" routerLink="/teamPointChart" style="margin-top: 10px;">Punkteentwicklung</a></div>
-    <div><a md-button class="mat-accent" routerLink="/comparison" style="margin-top: 10px;">Direktvergleich</a></div>
-    <div><a md-button class="mat-accent" routerLink="/teamStatistics" style="margin-top: 10px;">Teamstatistik</a></div>
-    <div><a md-button class="mat-accent" routerLink="/games" style="margin-top: 10px;">Games</a></div>
-    <div><a md-button class="mat-accent" routerLink="/teams" style="margin-top: 10px;">Teams</a></div>
-    <div><a md-button class="mat-accent" routerLink="/seasons" style="margin-top: 10px;">Seasons</a></div>
+  <div fxLayout="row" class="primary-color" style="height: 45px">
+    <div><a md-button class="mat-accent toolbarLink" routerLink="/standings">Tabelle</a></div>
+    <div><a md-button class="mat-accent toolbarLink" routerLink="/teamPointChart">Punkteentwicklung</a></div>
+    <div><a md-button class="mat-accent toolbarLink" routerLink="/comparison">Direktvergleich</a></div>
+    <div><a md-button class="mat-accent toolbarLink" routerLink="/teamStatistics">Teamstatistik</a></div>
+    <div><a md-button class="mat-accent toolbarLink" routerLink="/games">Games</a></div>
+    <div><a md-button class="mat-accent toolbarLink" routerLink="/teams">Teams</a></div>
+    <div><a md-button class="mat-accent toolbarLink" routerLink="/seasons">Seasons</a></div>
     <div fxFlex></div>
-    <!--<div>
-      <a md-button class="mat-accent" routerLink="/seasons">
+    <div *ngIf="isAdmin">
+      <button md-icon-button class="mat-accent" style="margin-right: 20px" (click)=logout()>
         <md-icon class="icon-size-42">verified_user</md-icon>
-      </a>
-    </div>-->
-    <div>
-      <a md-button class="mat-accent" routerLink="/seasons">
+      </button>
+    </div>
+    <div *ngIf="!isAdmin">
+      <button md-icon-button class="mat-accent" style="margin-right: 20px" (click)=openLoginDialog()>
         <md-icon class="icon-size-42">account_box</md-icon>
-      </a>
+      </button>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <div style="margin-left:10px">
+    <router-outlet></router-outlet>
+  </div>
 </div>

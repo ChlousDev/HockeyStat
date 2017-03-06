@@ -16,15 +16,19 @@
 
 .primary-color{
   background: mat-color($primary);
-  color: mat-contrast($primary, 800);
+  color: mat-contrast($primary, 400);
 }
 
 .accent-color{
   background: mat-color($accent);
-  color: mat-contrast($accent, A700);
+  color: mat-contrast($accent, 500);
 }
 
 .warn-color{
   background: mat-color($warn);
-  color: mat-contrast($warn, A400);
+  color: mat-contrast($warn, 500);
+}
+
+.mat-dialog-container{
+  background: mat-color($mat-blue-grey, 100);
 }

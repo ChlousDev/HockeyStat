@@ -6,6 +6,13 @@ import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
 
+import { AppConfig } from './app.config';
+import { APP_CONFIG } from './app.config.token';
+
+import { TeamProvider } from '../providers/team.provider';
+import { AuthenticationProvider } from '../providers/authentication.provider';
+import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
+
 import { MainComponent } from '../main/main.component';
 import { ComparisonComponent } from '../comparison/comparison.component';
 import { GamesComponent } from '../games/games.component';
@@ -14,6 +21,9 @@ import { StandingsComponent } from '../standings/standings.component';
 import { TeamPointChartComponent } from '../teamPointChart/teamPointChart.component';
 import { TeamsComponent } from '../teams/teams.component';
 import { TeamStatisticsComponent } from '../teamStatistics/teamStatistics.component';
+import { LoginComponent } from '../login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +35,8 @@ import { TeamStatisticsComponent } from '../teamStatistics/teamStatistics.compon
     StandingsComponent,
     TeamPointChartComponent,
     TeamsComponent,
-    TeamStatisticsComponent
+    TeamStatisticsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +84,13 @@ import { TeamStatisticsComponent } from '../teamStatistics/teamStatistics.compon
       },
     ])
   ],
-  providers: [],
-  bootstrap: [ MainComponent, ]
+  providers: [
+    { provide: APP_CONFIG, useValue: AppConfig },
+    ApiErrorHandlingProvider,
+    TeamProvider,
+    AuthenticationProvider
+  ],
+  entryComponents: [LoginComponent],
+  bootstrap: [MainComponent]
 })
 export class AppModule { }
