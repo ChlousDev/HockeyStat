@@ -10,6 +10,7 @@ import { AppConfig } from './app.config';
 import { APP_CONFIG } from './app.config.token';
 
 import { TeamProvider } from '../providers/team.provider';
+import { SeasonProvider } from '../providers/season.provider';
 import { AuthenticationProvider } from '../providers/authentication.provider';
 import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
 
@@ -88,6 +89,7 @@ import { LoginComponent } from '../login/login.component';
     { provide: APP_CONFIG, useValue: AppConfig },
     ApiErrorHandlingProvider,
     TeamProvider,
+    SeasonProvider,
     AuthenticationProvider
   ],
   entryComponents: [LoginComponent],

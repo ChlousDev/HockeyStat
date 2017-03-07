@@ -1,3 +1,66 @@
-<h1>
-  Seasons
-</h1>
+<div fxLayout="column">
+  <div fxLayout="row">
+    <h2>
+      Liste der Saisons
+    </h2>
+  </div>
+  <div fxLayout="row" *ngIf=isLoading>
+    <md-spinner></md-spinner>
+  </div>
+  <div fxLayout="row" *ngIf=!isLoading>
+    <table *ngIf=!isAdmin>
+      <thead>
+        <tr>
+          <th style="width: 150px">
+            <h6>Saison</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let season of seasons">
+          <td style="width: 150px">{{season.StartYear}} / {{season.StartYear+1}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table *ngIf=isAdmin style="width: 250px">
+      <thead>
+        <tr>
+          <th style="width: 120px">
+            <h6>Saison</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 120px">
+            <md-input-container >
+              <span>
+                <input mdInput [(ngModel)]="newSeasonStartYear" style="width: 50px" (ngModelChange)="newSeasonStartYear = convertToNumber($event)" ><span style="width: 50px"> / {{newSeasonStartYear+1}}</span>
+              </span>
+            </md-input-container>
+          </td>
+          <td>
+            <button md-icon-button class="mat-accent buttonTableAlignment" (click)=addSeason()>
+              <md-icon class="icon-size-24">save</md-icon>
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let season of seasons">
+          <td style="width: 120px">
+            <md-input-container >
+              <div fxLayout="row">
+                <input mdInput [(ngModel)]="season.StartYear" style="width: 50px" (ngModelChange)="season.StartYear = convertToNumber($event)"><span style="width: 50px"> / {{season.StartYear+1}} </span>
+              </div>
+            </md-input-container>
+          </td>
+          <td>
+            <button md-icon-button class="mat-accent buttonTableAlignment" (click)=updateSeason(season)>
+              <md-icon class="icon-size-24">save</md-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

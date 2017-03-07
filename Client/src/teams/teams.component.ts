@@ -22,6 +22,12 @@ export class TeamsComponent {
     this.authenticationProvider.isAdminSubject.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
     })
+    this.init();
+  }
+
+  private init(): void {
+    this.newTeamName="";
+    this.newTeamShortName="";
     this.loadTeams();
   }
 
@@ -35,17 +41,17 @@ export class TeamsComponent {
 
   public updateTeam(team: Team): void {
     this.teamProvider.saveTeam(team).subscribe(() => {
-      this.loadTeams();
+      this.init();
     }, () => {
-      this.loadTeams();
+      this.init();
     })
   }
 
   public addTeam(): void {
     this.teamProvider.saveTeam({ ID: 0, Name: this.newTeamName, ShortName: this.newTeamShortName }).subscribe(() => {
-      this.loadTeams();
+      this.init();
     }, () => {
-      this.loadTeams();
+      this.init();
     })
   }
 }

@@ -83,7 +83,7 @@ namespace HockeyStat.API.Controllers
             {
                 long gameID = this.dataAccess.AddGame(game);
                 response = this.Request.CreateResponse(HttpStatusCode.Created);
-                response.Headers.Location = new Uri(this.Request.RequestUri + gameID.ToString());
+                response.Headers.Location = new Uri(this.Request.RequestUri + "/" + gameID.ToString());
             }
             else
             {

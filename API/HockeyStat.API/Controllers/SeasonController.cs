@@ -30,7 +30,7 @@ namespace HockeyStat.API.Controllers
             return ResponseCreator.CreateNoCacheResponse(this.Request, this.dataAccess.LoadSeasons());
         }
 
-        [HttpPost]
+        [HttpPut]
         [Authorize(Roles = "admin")]
         public HttpResponseMessage Put([FromBody] Season season)
         {
@@ -56,7 +56,7 @@ namespace HockeyStat.API.Controllers
             {
                 long seasonID = this.dataAccess.SaveSeason(season);
                 response = this.Request.CreateResponse(HttpStatusCode.Created);
-                response.Headers.Location = new Uri(this.Request.RequestUri + seasonID.ToString());
+                response.Headers.Location = new Uri(this.Request.RequestUri + "/" + seasonID.ToString());
             }
             else
             {

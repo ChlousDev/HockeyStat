@@ -56,7 +56,7 @@ namespace HockeyStat.API.Controllers
             {
                 long teamID = this.dataAccess.SaveTeam(team);
                 response = this.Request.CreateResponse(HttpStatusCode.Created);
-                response.Headers.Location = new Uri(this.Request.RequestUri + teamID.ToString());
+                response.Headers.Location = new Uri(this.Request.RequestUri + "/" + teamID.ToString());
             }
             else
             {
