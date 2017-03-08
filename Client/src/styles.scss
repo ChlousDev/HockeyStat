@@ -30,5 +30,35 @@
 }
 
 .mat-dialog-container{
-  background: mat-color($mat-blue-grey, 100);
+  background: mat-color($background);
+}
+
+.mat-select-content{
+  background: mat-color($background);
+}
+
+.md2-datepicker-header{
+  background: map-get($primary, 400) !important;
+}
+
+.md2-calendar-day.selected, .md2-calendar-day.selected:hover{
+   background: map-get($primary, 400) !important;
+}
+
+.md2-datepicker-content{
+  background: mat-color($background);
+}
+
+md2-datepicker:focus:not(.md2-datepicker-disabled) .md2-datepicker-input{
+   color: mat-color($primary) !important;
+   border-color: mat-color($primary) !important;
+}
+
+md2-datepicker:focus:not(.md2-datepicker-disabled) .md2-datepicker-arrow{
+   color: mat-color($primary) !important;
+}
+
+.md2-datepicker-actions .md2-button{
+  background: mat-color($primary) !important;
+  color: mat-contrast($primary, 400) !important;
 }

@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let team of teams">
+        <tr *ngFor="let team of teams | teamsorderby">
           <td style="width: 75px">{{team.ShortName}}</td>
           <td style="width: 200px">{{team.Name}}</td>
         </tr>
@@ -42,12 +42,12 @@
         <tr>
           <td style="width: 75px">
             <md-input-container>
-              <input mdInput [(ngModel)]="newTeamShortName">
+              <input mdInput [(ngModel)]="newTeam.ShortName">
             </md-input-container>
           </td>
           <td style="width: 200px">
             <md-input-container>
-              <input mdInput [(ngModel)]="newTeamName">
+              <input mdInput [(ngModel)]="newTeam.Name">
             </md-input-container>
           </td>
           <td>

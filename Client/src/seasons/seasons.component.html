@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let season of seasons">
+        <tr *ngFor="let season of seasons | seasonsorderby">
           <td style="width: 150px">{{season.StartYear}} / {{season.StartYear+1}}</td>
         </tr>
       </tbody>
@@ -36,7 +36,7 @@
           <td style="width: 120px">
             <md-input-container >
               <span>
-                <input mdInput [(ngModel)]="newSeasonStartYear" style="width: 50px" (ngModelChange)="newSeasonStartYear = convertToNumber($event)" ><span style="width: 50px"> / {{newSeasonStartYear+1}}</span>
+                <input mdInput [(ngModel)]="newSeason.StartYear" style="width: 50px" (ngModelChange)="newSeason.StartYear = convertToNumber($event)" ><span style="width: 50px"> / {{newSeason.StartYear+1}}</span>
               </span>
             </md-input-container>
           </td>

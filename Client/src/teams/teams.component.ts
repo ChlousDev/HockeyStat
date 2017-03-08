@@ -12,10 +12,11 @@ import { Team } from '../model/team';
 export class TeamsComponent {
 
   public teams: Team[];
+
   public isAdmin: boolean;
-  public newTeamShortName: string;
-  public newTeamName: string;
   public isLoading: boolean = false;
+
+  public newTeam: Team;
 
   constructor(private teamProvider: TeamProvider, private authenticationProvider: AuthenticationProvider) {
     this.isAdmin = this.authenticationProvider.isAdmin;
@@ -26,8 +27,7 @@ export class TeamsComponent {
   }
 
   private init(): void {
-    this.newTeamName = "";
-    this.newTeamShortName = "";
+    this.newTeam = new Team();
     this.loadTeams();
   }
 
@@ -50,8 +50,8 @@ export class TeamsComponent {
   }
 
   public addTeam(): void {
-    if ((this.newTeamShortName && this.newTeamShortName.length > 0) && (this.newTeamName && this.newTeamName.length > 0)) {
-      this.teamProvider.saveTeam({ ID: 0, Name: this.newTeamName, ShortName: this.newTeamShortName }).subscribe(() => {
+    if ((this.newTeam.ShortName && this.newTeam.ShortName.length > 0) && (this.newTeam.Name && this.newTeam.Name.length > 0)) {
+      this.teamProvider.saveTeam(this.newTeam).subscribe(() => {
         this.init();
       }, () => {
         this.init();

@@ -12,9 +12,11 @@ import { Season } from '../model/season';
 export class SeasonsComponent {
 
   public seasons: Season[];
+
   public isAdmin: boolean;
-  public newSeasonStartYear: number;
   public isLoading: boolean = false;
+
+  public newSeason: Season;
 
   constructor(private seasonProvider: SeasonProvider, private authenticationProvider: AuthenticationProvider) {
     this.isAdmin = this.authenticationProvider.isAdmin;
@@ -25,7 +27,7 @@ export class SeasonsComponent {
   }
 
   private init(): void {
-    this.newSeasonStartYear = null;
+    this.newSeason=new Season();
     this.loadSeasons();
   }
 
@@ -48,8 +50,8 @@ export class SeasonsComponent {
   }
 
   public addSeason(): void {
-    if (this.newSeasonStartYear && this.newSeasonStartYear > 2010) {
-      this.seasonProvider.saveSeason({ ID: 0, StartYear: this.newSeasonStartYear }).subscribe(() => {
+    if (this.newSeason.StartYear && this.newSeason.StartYear > 2010) {
+      this.seasonProvider.saveSeason(this.newSeason).subscribe(() => {
         this.init();
       }, () => {
         this.init();

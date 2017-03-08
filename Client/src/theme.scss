@@ -3,6 +3,7 @@
 $primary: mat-palette($mat-cyan, 400); 
 $accent: mat-palette($mat-indigo, 500);
 $warn: mat-palette($mat-red, 500);
+$background: mat-palette($mat-blue-grey, 100);
 $mat-light-theme-background: (
   status-bar: map_get($mat-grey, 300),
   app-bar:    map_get($mat-grey, 100),
