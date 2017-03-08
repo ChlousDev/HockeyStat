@@ -20,7 +20,7 @@ export class SeasonsComponent {
     this.isAdmin = this.authenticationProvider.isAdmin;
     this.authenticationProvider.isAdminSubject.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
-    })
+    });
     this.init();
   }
 
@@ -38,19 +38,23 @@ export class SeasonsComponent {
   }
 
   public updateSeason(season: Season): void {
-    this.seasonProvider.saveSeason(season).subscribe(() => {
-      this.init();
-    }, () => {
-      this.init();
-    })
+    if (season.StartYear && season.StartYear > 2010) {
+      this.seasonProvider.saveSeason(season).subscribe(() => {
+        this.init();
+      }, () => {
+        this.init();
+      })
+    }
   }
 
   public addSeason(): void {
-    this.seasonProvider.saveSeason({ ID: 0, StartYear: this.newSeasonStartYear }).subscribe(() => {
-      this.init();
-    }, () => {
-      this.init();
-    })
+    if (this.newSeasonStartYear && this.newSeasonStartYear > 2010) {
+      this.seasonProvider.saveSeason({ ID: 0, StartYear: this.newSeasonStartYear }).subscribe(() => {
+        this.init();
+      }, () => {
+        this.init();
+      })
+    }
   }
 
   public convertToNumber(event): number {

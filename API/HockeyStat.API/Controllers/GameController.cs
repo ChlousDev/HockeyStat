@@ -92,7 +92,7 @@ namespace HockeyStat.API.Controllers
             return response;
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [Authorize(Roles = "admin")]
         public HttpResponseMessage Delete(long id)
         {

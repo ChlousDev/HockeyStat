@@ -21,13 +21,13 @@ export class TeamsComponent {
     this.isAdmin = this.authenticationProvider.isAdmin;
     this.authenticationProvider.isAdminSubject.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
-    })
+    });
     this.init();
   }
 
   private init(): void {
-    this.newTeamName="";
-    this.newTeamShortName="";
+    this.newTeamName = "";
+    this.newTeamShortName = "";
     this.loadTeams();
   }
 
@@ -40,18 +40,22 @@ export class TeamsComponent {
   }
 
   public updateTeam(team: Team): void {
-    this.teamProvider.saveTeam(team).subscribe(() => {
-      this.init();
-    }, () => {
-      this.init();
-    })
+    if ((team.ShortName && team.ShortName.length > 0) && (team.Name && team.Name.length > 0)) {
+      this.teamProvider.saveTeam(team).subscribe(() => {
+        this.init();
+      }, () => {
+        this.init();
+      })
+    }
   }
 
   public addTeam(): void {
-    this.teamProvider.saveTeam({ ID: 0, Name: this.newTeamName, ShortName: this.newTeamShortName }).subscribe(() => {
-      this.init();
-    }, () => {
-      this.init();
-    })
+    if ((this.newTeamShortName && this.newTeamShortName.length > 0) && (this.newTeamName && this.newTeamName.length > 0)) {
+      this.teamProvider.saveTeam({ ID: 0, Name: this.newTeamName, ShortName: this.newTeamShortName }).subscribe(() => {
+        this.init();
+      }, () => {
+        this.init();
+      })
+    }
   }
 }

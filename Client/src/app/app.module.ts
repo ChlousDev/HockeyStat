@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { Md2Module }  from 'md2';
 
 import { AppConfig } from './app.config';
 import { APP_CONFIG } from './app.config.token';
 
 import { TeamProvider } from '../providers/team.provider';
 import { SeasonProvider } from '../providers/season.provider';
+import { GameProvider } from '../providers/game.provider';
 import { AuthenticationProvider } from '../providers/authentication.provider';
 import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
 
@@ -23,6 +25,9 @@ import { TeamPointChartComponent } from '../teamPointChart/teamPointChart.compon
 import { TeamsComponent } from '../teams/teams.component';
 import { TeamStatisticsComponent } from '../teamStatistics/teamStatistics.component';
 import { LoginComponent } from '../login/login.component';
+
+import { SeasonsOrderByPipe } from '../pipes/seasonsOrderBy.pipe';
+import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
 
 
 
@@ -37,7 +42,9 @@ import { LoginComponent } from '../login/login.component';
     TeamPointChartComponent,
     TeamsComponent,
     TeamStatisticsComponent,
-    LoginComponent
+    LoginComponent,
+    SeasonsOrderByPipe,
+    TeamsOrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -45,6 +52,7 @@ import { LoginComponent } from '../login/login.component';
     HttpModule,
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
+    Md2Module.forRoot(),
     RouterModule.forRoot([
       {
         path: 'comparison',
@@ -90,6 +98,7 @@ import { LoginComponent } from '../login/login.component';
     ApiErrorHandlingProvider,
     TeamProvider,
     SeasonProvider,
+    GameProvider,
     AuthenticationProvider
   ],
   entryComponents: [LoginComponent],

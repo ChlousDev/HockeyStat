@@ -16,7 +16,7 @@ export class MainComponent {
   constructor(private dialog: MdDialog, private authenticationProvider: AuthenticationProvider) {
     this.isAdmin = this.authenticationProvider.isAdmin;
     this.authenticationProvider.isAdminSubject.subscribe(isAdmin => {
-      this.isAdmin = isAdmin
+      this.isAdmin = isAdmin;
     });
   }
 

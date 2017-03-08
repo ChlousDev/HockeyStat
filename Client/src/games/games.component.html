@@ -1,3 +1,226 @@
-<h1>
-  Games
-</h1>
+<div fxLayout="column">
+  <div fxLayout="row">
+    <h2>
+      Spielergenisse
+    </h2>
+  </div>
+  <div fxLayout="row" *ngIf=isLoadingCatalogData>
+    <md-spinner></md-spinner>
+  </div>
+  <div fxLayout="row" *ngIf=!isLoadingCatalogData>
+    <div fxLayout="column">
+      <div fxLayout="row">
+        <div fxLayout="column">
+          <h6>Saison auswählen</h6>
+          <md-select [(ngModel)]="selectedSeason" (change)="selectedSeasonChanged()" style="width: 150px; margin-top: 10px">
+            <md-option *ngFor="let season of seasons" [value]="season">
+              {{season.StartYear}} / {{season.StartYear+1}}
+            </md-option>
+          </md-select>
+        </div>
+      </div>
+      <div fxLayout="row" *ngIf=isLoadingGames>
+        <md-spinner></md-spinner>
+      </div>
+      <div fxLayout="row" *ngIf=!isLoadingGames style="margin-top: 15px">
+        <table *ngIf=!isAdmin>
+          <thead>
+            <tr>
+              <th style="width: 150px">
+                <h6>Datum</h6>
+              </th>
+              <th style="width: 200px">
+                <h6>Heimteam</h6>
+              </th>
+              <th style="width: 200px">
+                <h6>Gastteam</h6>
+              </th>
+              <th style="width: 70px; text-align: center">
+                <h6>Ergebnis</h6>
+              </th>
+              <th style="width: 70px; text-align: center">
+                <h6>n. V.</h6>
+              </th>
+              <th style="width: 70px; text-align: center">
+                <h6>n. P.</h6>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let game of games">
+              <td style="width: 150px">{{game.Date | date: 'dd.MM.yyyy' }} </td>
+              <td style="width: 200px">{{game.HomeTeam.Name}} </td>
+              <td style="width: 200px">{{game.GuestTeam.Name}} </td>
+              <td style="width: 70px; text-align: center">{{game.HomeScore}} : {{game.GuestScore}}</td>
+              <td style="width: 70px; text-align: center">{{game.OTHomeScore}} : {{game.OTGuestScore}}</td>
+              <td style="width: 70px; text-align: center">{{game.PSHomeScore}} : {{game.PSGuestScore}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table *ngIf=isAdmin>
+          <thead>
+            <tr>
+              <th style="width: 150px">
+                <h6>Datum</h6>
+              </th>
+              <th style="width: 200px">
+                <h6>Heimteam</h6>
+              </th>
+              <th style="width: 200px">
+                <h6>Gastteam</h6>
+              </th>
+              <th style="width: 70px; text-align: center">
+                <h6>Ergebnis</h6>
+              </th>
+              <th style="width: 70px; text-align: center">
+                <h6>n. V.</h6>
+              </th>
+              <th style="width: 70px; text-align: center">
+                <h6>n. P.</h6>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 150px">
+                <md2-datepicker [(ngModel)]="newGame.Date" format="dd.MM.y"></md2-datepicker>
+              </td>
+              <td style="width: 200px">
+                <md-select [(ngModel)]="newGame.HomeTeam" style="width: 190px">
+                  <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
+                    {{team.Name}}
+                  </md-option>
+                </md-select>
+              </td>
+              <td style="width: 200px">
+                <md-select [(ngModel)]="newGame.GuestTeam" style="width: 190px">
+                  <md-option *ngFor="let team of teams" [value]="team">
+                    {{team.Name}}
+                  </md-option>
+                </md-select>
+              </td>
+              <td style="width: 70px; text-align: center">
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="newGame.HomeScore" style="width: 10px" (ngModelChange)="newGame.HomeScore = convertToNumber($event)">
+                  </div>
+                </md-input-container> :
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="newGame.GuestScore" style="width: 10px" (ngModelChange)="newGame.GuestScore = convertToNumber($event)">
+                  </div>
+                </md-input-container>
+              </td>
+              <td style="width: 70px; text-align: center">
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="newGame.OTHomeScore" style="width: 10px" (ngModelChange)="newGame.OTHomeScore = convertToNumber($event)">
+                  </div>
+                </md-input-container> :
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="newGame.OTGuestScore" style="width: 10px" (ngModelChange)="newGame.OTGuestScore = convertToNumber($event)">
+                  </div>
+                </md-input-container>
+              </td>
+              <td style="width: 70px; text-align: center">
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="newGame.PSHomeScore" style="width: 10px" (ngModelChange)="newGame.PSHomeScore = convertToNumber($event)">
+                  </div>
+                </md-input-container> :
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="newGame.PSGuestScore" style="width: 10px" (ngModelChange)="newGame.PSGuestScore = convertToNumber($event)">
+                  </div>
+                </md-input-container>
+              </td>
+              <td>
+                <button md-icon-button class="mat-accent buttonTableAlignment" (click)=addGame(newGame)>
+                  <md-icon class="icon-size-24">save</md-icon>
+                </button>
+              </td>
+            </tr>
+            <tr *ngFor="let game of games">
+              <td style="width: 150px">
+                <md2-datepicker [(ngModel)]="game.Date" format="dd.MM.y"></md2-datepicker>
+              </td>
+              <td style="width: 200px">
+                <md-select [(ngModel)]="game.HomeTeam" style="width: 190px">
+                  <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
+                    {{team.Name}}
+                  </md-option>
+                </md-select>
+              </td>
+              <td style="width: 200px">
+                <md-select [(ngModel)]="game.GuestTeam" style="width: 190px">
+                  <md-option *ngFor="let team of teams" [value]="team">
+                    {{team.Name}}
+                  </md-option>
+                </md-select>
+              </td>
+              <td style="width: 70px; text-align: center">
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="game.HomeScore" style="width: 10px" (ngModelChange)="game.HomeScore = convertToNumber($event)">
+                  </div>
+                </md-input-container> :
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="game.GuestScore" style="width: 10px" (ngModelChange)="game.GuestScore = convertToNumber($event)">
+                  </div>
+                </md-input-container>
+              </td>
+              <td style="width: 70px; text-align: center">
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="game.OTHomeScore" style="width: 10px" (ngModelChange)="game.OTHomeScore = convertToNumber($event)">
+                  </div>
+                </md-input-container> :
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="game.OTGuestScore" style="width: 10px" (ngModelChange)="game.OTGuestScore = convertToNumber($event)">
+                  </div>
+                </md-input-container>
+              </td>
+              <td style="width: 70px; text-align: center">
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="game.PSHomeScore" style="width: 10px" (ngModelChange)="game.PSHomeScore = convertToNumber($event)">
+                  </div>
+                </md-input-container> :
+                <md-input-container>
+                  <div fxLayout="row">
+                    <input mdInput [(ngModel)]="game.PSGuestScore" style="width: 10px" (ngModelChange)="game.PSGuestScore = convertToNumber($event)">
+                  </div>
+                </md-input-container>
+              </td>
+              <td>
+                <button md-icon-button class="mat-accent buttonTableAlignment" (click)=updateGame(game)>
+                  <md-icon class="icon-size-24">save</md-icon>
+                </button>
+              </td>
+              <td>
+                <button md-icon-button class="mat-warn buttonTableAlignment" (click)=deleteGame(game)>
+                  <md-icon class="icon-size-24">delete</md-icon>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div fxLayout="row" style="width: 750px">
+        <div fxFlex> </div>
+        <button md-icon-button class="mat-primary" (click)=previousPage()>
+          <md-icon class="icon-size-42">chevron_left</md-icon>
+        </button>
+        <div style="font-size: 16px; margin-top:12px; margin-left:15px"> {{currentPage + 1}} / {{totalPages}} </div>
+        <button md-icon-button class="mat-primary" (click)=nextPage()>
+          <md-icon class="icon-size-42">chevron_right</md-icon>
+        </button>
+        <div fxFlex></div>
+      </div>
+    </div>
+  </div>
+</div>
