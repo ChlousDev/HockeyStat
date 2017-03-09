@@ -1,9 +1,10 @@
-<div fxLayout="column">
-  <div fxLayout="row">
+<div fxLayout="column" style="height: 100%">
+  <div fxFlex="100px">
     <h1 style="text-align: center; width:100%">
       Hockey Statistik
     </h1>
   </div>
+  <div fxFlex="50px">
   <div fxLayout="row" class="primary-color" style="height: 45px">
     <div><a md-button class="mat-accent toolbarLink" routerLink="/standings">Tabelle</a></div>
     <div><a md-button class="mat-accent toolbarLink" routerLink="/teamPointChart">Punkteentwicklung</a></div>
@@ -24,7 +25,8 @@
       </button>
     </div>
   </div>
-  <div style="margin-left:10px">
+  </div>
+  <div fxFlex style="margin-left:10px; overflow-y: auto">
     <router-outlet></router-outlet>
   </div>
 </div>
