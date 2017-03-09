@@ -58,25 +58,25 @@ td > md-input-container > .mat-input-wrapper {
     margin-top:5px !important;
 }
 
-td > .md2-datepicker-trigger{
-    padding-bottom: 0px !important;
-    padding-top: 0px !important;
-}
-
 .md2-datepicker-trigger{
     padding-bottom: 0px !important;
     padding-top: 10px !important;
 }
 
-td > .md2-datepicker-icon{
-    top: 3px !important;
+td > md2-datepicker > .md2-datepicker-trigger{
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
 }
 
 .md2-datepicker-icon{
     top: 13px !important;
 }
 
-td > .md2-datepicker-input{
+td > md2-datepicker > .md2-datepicker-trigger > .md2-datepicker-icon{
+    top: 3px !important;
+}
+
+.md2-datepicker-input{
     min-width: 100px !important;
     width: 100px !important;
 }
@@ -86,10 +86,10 @@ table {
 }
 
 .qualificationLine{
-    border-bottom-color: black !important;
-    border-bottom-style: solid !important;
-    border-bottom-width: 1px !important;
-    margin-bottom: 50px !important;
+    border-bottom-color: black ;
+    border-bottom-style: solid ;
+    border-bottom-width: 1px ;
+    margin-bottom: 50px ;
 }
 
 .aboveQualificationLine{

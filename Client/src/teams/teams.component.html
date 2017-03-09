@@ -27,7 +27,7 @@
       </tbody>
     </table>
 
-    <table *ngIf=isAdmin>
+    <table *ngIf="(isAdmin && teams)">
       <thead>
         <tr>
           <th class="input-th" style="width: 75px">

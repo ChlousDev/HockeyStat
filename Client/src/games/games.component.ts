@@ -72,7 +72,7 @@ export class GamesComponent {
   }
 
   private loadGames(): void {
-    if ((this.teamProvider) && (this.selectedSeason)) {
+    if ((this.teams) && (this.selectedSeason)) {
       this.isLoadingGames = true;
       this.gameProvider.getGames(this.selectedSeason.ID, this.currentPage, 15).subscribe(pagedList => {
         this.games = pagedList.Items;

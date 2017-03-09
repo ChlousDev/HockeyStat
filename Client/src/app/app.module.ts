@@ -14,11 +14,12 @@ import { TeamProvider } from '../providers/team.provider';
 import { SeasonProvider } from '../providers/season.provider';
 import { GameProvider } from '../providers/game.provider';
 import { StandingsProvider } from '../providers/standings.provider';
+import { TeamComparisonProvider} from '../providers/teamComparison.provider';
 import { AuthenticationProvider } from '../providers/authentication.provider';
 import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
 
 import { MainComponent } from '../main/main.component';
-import { ComparisonComponent } from '../comparison/comparison.component';
+import { TeamComparisonComponent } from '../teamComparison/teamComparison.component';
 import { GamesComponent } from '../games/games.component';
 import { SeasonsComponent } from '../seasons/seasons.component';
 import { StandingsComponent } from '../standings/standings.component';
@@ -35,7 +36,7 @@ import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
 @NgModule({
   declarations: [
     MainComponent,
-    ComparisonComponent,
+    TeamComparisonComponent,
     GamesComponent,
     SeasonsComponent,
     TeamPointChartComponent,
@@ -56,8 +57,8 @@ import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
     Md2Module.forRoot(),
     RouterModule.forRoot([
       {
-        path: 'comparison',
-        component: ComparisonComponent,
+        path: 'teamComparison',
+        component: TeamComparisonComponent,
       },
       {
         path: 'games',
@@ -101,6 +102,7 @@ import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
     SeasonProvider,
     GameProvider,
     StandingsProvider,
+    TeamComparisonProvider,
     AuthenticationProvider
   ],
   entryComponents: [LoginComponent],

@@ -4,7 +4,6 @@ import { SeasonsOrderByPipe } from '../pipes/seasonsOrderBy.pipe';
 
 import { StandingsProvider } from '../providers/standings.provider';
 import { SeasonProvider } from '../providers/season.provider';
-import { AuthenticationProvider } from '../providers/authentication.provider';
 
 import { Season } from '../model/season';
 import { Standings } from '../model/standings';
