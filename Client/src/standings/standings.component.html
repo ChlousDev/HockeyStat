@@ -1,3 +1,96 @@
-<h1>
-  Standings
-</h1>
+<div>
+  <div>
+    <h2>
+      Tabelle
+    </h2>
+  </div>
+  <div *ngIf=isLoadingCatalogData>
+    <md-spinner></md-spinner>
+  </div>
+  <div *ngIf=!isLoadingCatalogData>
+    <div fxLayout="row">
+      <div>
+        <h6>Saison</h6>
+        <md-select [(ngModel)]="selectedSeason" (change)="selectedSeasonChanged()" style="width: 150px; margin-top: 10px">
+          <md-option *ngFor="let season of seasons" [value]="season">
+            {{season.StartYear}} / {{season.StartYear+1}}
+          </md-option>
+        </md-select>
+      </div>
+      <div style="margin-left:25px">
+        <h6>Datum</h6>
+        <md2-datepicker [(ngModel)]="date" format="dd.MM.y"></md2-datepicker>
+      </div>
+      <div>
+        <button md-icon-button class="mat-primary" style="margin-top: 20px; margin-left: 18px" (click)=loadStandings()>
+           <md-icon class="icon-size-24">autorenew</md-icon>
+         </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf=isLoadingStandings>
+    <md-spinner></md-spinner>
+  </div>
+  <div *ngIf=!isLoadingStandings style="margin-top: 15px">
+    <table *ngIf=standings>
+      <thead>
+        <tr>
+          <th style="width: 20px; text-align: right">
+            <h6>R</h6>
+          </th>
+          <th style="width: 5px"></th>
+          <th style="width: 200px">
+            <h6>Team</h6>
+          </th>
+          <th style="width: 55px; text-align: center">
+            <h6>SP</h6>
+          </th>
+          <th style="width: 55px; text-align: center">
+            <h6>S</h6>
+          </th>
+          <th style="width: 55px; text-align: center">
+            <h6>S n.V</h6>
+          </th>
+          <th style="width: 55px; text-align: center">
+            <h6>N n.V</h6>
+          </th>
+          <th style="width: 55px; text-align: center">
+            <h6>N</h6>
+          </th>
+          <th style="width: 22px; text-align: center">
+            <h6></h6>
+          </th>
+          <th style="width: 8px; text-align: center">
+            <h6>T</h6>
+          </th>
+          <th style="width: 22px; text-align: center">
+            <h6></h6>
+          </th>
+          <th style="width: 55px; text-align: center">
+            <h6>P</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let standingsEntry of standings.Entries" [ngClass]="{qualificationLine: standingsEntry.Position==8 , qualificationLine2:standingsEntry.Position==9}">
+          <td style="width: 20px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Position}}.</td>
+          <td style="width: 5px" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}"></td>
+          <td style="width: 200px" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Team.Name}}</td>
+          <td style="width: 55px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.GamesPlayed}}</td>
+          <td style="width: 55px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Wins}}</td>
+          <td style="width: 55px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.OTWins}}</td>
+          <td style="width: 55px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.OTLosses}}</td>
+          <td style="width: 55px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Losses}}</td>
+          <td style="width: 22px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.GoalsScored}} </td>
+          <td style="width: 8px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">:</td>
+          <td style="width: 22px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.GoalsScoredAgainst}}</td>
+          <td style="width: 55px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Points}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top: 80px">
+    <p style="font-size:0.8em">R: Rang, P: Punkte, S: Siege, S n.V: Siege nach Verlängerung oder Penaltyschiessen, N: Niederlagen, N n.V: Niederlagen
+      nach Verlängerung oder Penaltyschiessen, T: Torverhältnis, SP: Spiele</p>
+  </div>
+</div>

@@ -58,16 +58,44 @@ td > md-input-container > .mat-input-wrapper {
     margin-top:5px !important;
 }
 
-.md2-datepicker-trigger{
+td > .md2-datepicker-trigger{
     padding-bottom: 0px !important;
     padding-top: 0px !important;
 }
 
-.md2-datepicker-icon{
+.md2-datepicker-trigger{
+    padding-bottom: 0px !important;
+    padding-top: 10px !important;
+}
+
+td > .md2-datepicker-icon{
     top: 3px !important;
 }
 
-.md2-datepicker-input{
+.md2-datepicker-icon{
+    top: 13px !important;
+}
+
+td > .md2-datepicker-input{
     min-width: 100px !important;
     width: 100px !important;
+}
+
+table { 
+    border-collapse: collapse; 
+}
+
+.qualificationLine{
+    border-bottom-color: black !important;
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+    margin-bottom: 50px !important;
+}
+
+.aboveQualificationLine{
+    padding-bottom: 5px;
+}
+
+.underneathQualificationLine{
+    padding-top: 5px;
 }

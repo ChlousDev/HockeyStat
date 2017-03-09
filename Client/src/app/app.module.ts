@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { Md2Module }  from 'md2';
+import { Md2Module } from 'md2';
 
 import { AppConfig } from './app.config';
 import { APP_CONFIG } from './app.config.token';
@@ -13,6 +13,7 @@ import { APP_CONFIG } from './app.config.token';
 import { TeamProvider } from '../providers/team.provider';
 import { SeasonProvider } from '../providers/season.provider';
 import { GameProvider } from '../providers/game.provider';
+import { StandingsProvider } from '../providers/standings.provider';
 import { AuthenticationProvider } from '../providers/authentication.provider';
 import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
 
@@ -99,6 +100,7 @@ import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
     TeamProvider,
     SeasonProvider,
     GameProvider,
+    StandingsProvider,
     AuthenticationProvider
   ],
   entryComponents: [LoginComponent],
