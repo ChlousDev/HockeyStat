@@ -7,19 +7,19 @@ import { IAppConfig } from '../app/app.config.interface';
 
 import { ApiErrorHandlingProvider } from './apiErrorHandling.provider';
 
-import { TeamComparison } from '../model/teamComparison';
+import { TeamStatistics } from '../model/teamStatistics';
 
 @Injectable()
-export class TeamComparisonProvider {
+export class TeamStatisticsProvider {
 
     private comparisonApiUrl: string;
 
     constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig, private errorHandling: ApiErrorHandlingProvider) {
-        this.comparisonApiUrl = this.config.apiEndpoint + 'teamComparison';
+        this.comparisonApiUrl = this.config.apiEndpoint + 'teamStatistics';
     }
 
-    public getTeamComparison(seasonID: number, team1ID: number, team2ID: number): Observable<TeamComparison> {
-        return this.http.get(this.comparisonApiUrl + '/season/' + seasonID + '/team1/' + team1ID + '/team2/' + team2ID)
+    public getTeamComparison(seasonID: number, teamID: number): Observable<TeamStatistics> {
+        return this.http.get(this.comparisonApiUrl + '/season/' + seasonID + '/team/' + teamID)
             .map((response) => response.json())
             ._catch(this.errorHandling.handleError);
     }

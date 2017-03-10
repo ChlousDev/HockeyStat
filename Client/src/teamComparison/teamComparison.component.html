@@ -128,7 +128,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let game of teamComparison.GamesPlayed">
+        <tr *ngFor="let game of teamComparison.GamesPlayed | gamesorderby">
           <td style="width: 150px">{{game.Date | date: 'dd.MM.yyyy' }} </td>
           <td style="width: 200px">{{game.HomeTeam.Name}} </td>
           <td style="width: 200px">{{game.GuestTeam.Name}} </td>

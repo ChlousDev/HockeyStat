@@ -24,7 +24,7 @@ namespace HockeyStat.API.Controllers
             this.dataAccess = dataAccess;
         }
 
-        [HttpGet]
+        [HttpGet("Season/{seasonID}/Team/{teamID}")]
         public HttpResponseMessage Get(long seasonId, long teamId)
         {
             HttpResponseMessage response = new HttpResponseMessage();

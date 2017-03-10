@@ -1,3 +1,173 @@
-<h1>
-  TeamStatistics
-</h1>
+<div>
+  <div>
+    <h2>
+      Teamstatistik
+    </h2>
+  </div>
+  <div *ngIf=isLoadingCatalogData>
+    <md-spinner></md-spinner>
+  </div>
+  <div *ngIf=!isLoadingCatalogData>
+    <div fxLayout="row">
+      <div>
+        <h6>Saison</h6>
+        <md-select [(ngModel)]="selectedSeason" (change)="selectedSeasonChanged()" style="width: 150px; margin-top: 10px">
+          <md-option *ngFor="let season of seasons" [value]="season">
+            {{season.StartYear}} / {{season.StartYear+1}}
+          </md-option>
+        </md-select>
+      </div>
+    </div>
+    <div fxLayout="row" style="margin-top:25px">
+      <div>
+        <h6>Team</h6>
+        <md-select [(ngModel)]="team" style="width: 190px">
+          <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
+            {{team.Name}}
+          </md-option>
+        </md-select>
+      </div>
+      <div>
+        <button md-icon-button class="mat-primary" style="margin-top: 20px; margin-left: 18px" (click)=loadTeamStatistics()>
+           <md-icon class="icon-size-24">autorenew</md-icon>
+         </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf=isLoadingTeamStatistics>
+  <md-spinner></md-spinner>
+</div>
+<div *ngIf="!isLoadingTeamStatistics && teamStatistics" style="margin-top: 15px">
+  <div>
+    <h3>
+      Ergebnisse
+    </h3>
+    <table *ngIf=loadTeamStatistics>
+      <thead>
+        <tr>
+          <th style="width: 150px;">
+          </th>
+          <th style="width: 100px;  text-align: center">
+            <h6>Total</h6>
+          </th>
+          <th style="width: 100px;  text-align: center">
+            <h6>Prozent</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 150px; text-align: left">Spiele</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.Points}}</td>
+          <td style="width: 100px; text-align: center"></td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Siege</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.Wins}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.WinsPercent}}</td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Siege n.V.</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTWins}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTWinsPercent}}</td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Siege n.P.</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSWins}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSWinsPercent}}</td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Niederlagen</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.Losses}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.LossesPercent}}</td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Niederlagen n.V.</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTLosses}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTLossesPercent}}</td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Niederlagen n.P.</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSLosses}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSLossesPercent}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Statistik
+    </h3>
+    <table *ngIf=loadTeamStatistics>
+      <thead>
+        <tr>
+          <th style="width: 150px;">
+          </th>
+          <th style="width: 100px;  text-align: center">
+            <h6>Total</h6>
+          </th>
+          <th style="width: 100px;  text-align: center">
+            <h6>Pro Spiel</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="width: 150px; text-align: left">Punkte</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.Points}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PointsPerGame}}</td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Tore</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScored}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredPerGame}}</td>
+        </tr>
+        <tr>
+          <td style="width: 150px; text-align: left">Gegentore</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredAgainst}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredAgainstPerGame}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Spiele
+    </h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 150px">
+            <h6>Datum</h6>
+          </th>
+          <th style="width: 200px">
+            <h6>Heimteam</h6>
+          </th>
+          <th style="width: 200px">
+            <h6>Gastteam</h6>
+          </th>
+          <th style="width: 70px; text-align: center">
+            <h6>Ergebnis</h6>
+          </th>
+          <th style="width: 70px; text-align: center">
+            <h6>n. V.</h6>
+          </th>
+          <th style="width: 70px; text-align: center">
+            <h6>n. P.</h6>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let game of teamStatistics.GamesPlayed | gamesorderby">
+          <td style="width: 150px">{{game.Date | date: 'dd.MM.yyyy' }} </td>
+          <td style="width: 200px">{{game.HomeTeam.Name}} </td>
+          <td style="width: 200px">{{game.GuestTeam.Name}} </td>
+          <td style="width: 70px; text-align: center">{{game.HomeScore}} : {{game.GuestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.OTHomeScore}} : {{game.OTGuestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.PSHomeScore}} : {{game.PSGuestScore}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

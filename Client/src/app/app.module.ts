@@ -15,6 +15,7 @@ import { SeasonProvider } from '../providers/season.provider';
 import { GameProvider } from '../providers/game.provider';
 import { StandingsProvider } from '../providers/standings.provider';
 import { TeamComparisonProvider} from '../providers/teamComparison.provider';
+import { TeamStatisticsProvider} from '../providers/teamStatistics.provider';
 import { AuthenticationProvider } from '../providers/authentication.provider';
 import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
 
@@ -30,7 +31,7 @@ import { LoginComponent } from '../login/login.component';
 
 import { SeasonsOrderByPipe } from '../pipes/seasonsOrderBy.pipe';
 import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
-
+import { GamesOrderByPipe } from '../pipes/gamesOrderBy.pipe';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
     TeamStatisticsComponent,
     LoginComponent,
     SeasonsOrderByPipe,
-    TeamsOrderByPipe
+    TeamsOrderByPipe,
+    GamesOrderByPipe
   ],
   imports: [
     BrowserModule,
@@ -103,6 +105,7 @@ import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
     GameProvider,
     StandingsProvider,
     TeamComparisonProvider,
+    TeamStatisticsProvider,
     AuthenticationProvider
   ],
   entryComponents: [LoginComponent],

@@ -1,6 +1,6 @@
 import { Pipe } from '@angular/core';
 
-import {Season} from '../model/Season';
+import {Season} from '../model/season';
 
 @Pipe({
   name: "seasonsorderby",
