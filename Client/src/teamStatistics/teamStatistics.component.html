@@ -11,7 +11,7 @@
     <div fxLayout="row">
       <div>
         <h6>Saison</h6>
-        <md-select [(ngModel)]="selectedSeason" (change)="selectedSeasonChanged()" style="width: 150px; margin-top: 10px">
+        <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
           <md-option *ngFor="let season of seasons" [value]="season">
             {{season.StartYear}} / {{season.StartYear+1}}
           </md-option>
@@ -21,7 +21,7 @@
     <div fxLayout="row" style="margin-top:25px">
       <div>
         <h6>Team</h6>
-        <md-select [(ngModel)]="team" style="width: 190px">
+        <md-select [(ngModel)]="selectedTeam" style="width: 190px">
           <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
             {{team.Name}}
           </md-option>

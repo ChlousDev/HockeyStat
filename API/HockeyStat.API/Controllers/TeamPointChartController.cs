@@ -24,11 +24,11 @@ namespace HockeyStat.API.Controllers
             this.dataAccess = dataAccess;
         }
 
-        [HttpGet]
-        public HttpResponseMessage Get(long seasonId)
+        [HttpGet("Season/{seasonID}")]
+        public HttpResponseMessage Get(long seasonID)
         {
             HttpResponseMessage response = new HttpResponseMessage();
-            Season season = this.dataAccess.LoadSeason(seasonId);
+            Season season = this.dataAccess.LoadSeason(seasonID);
             if (season == null)
             {
                 response = this.Request.CreateResponse(HttpStatusCode.NotFound);

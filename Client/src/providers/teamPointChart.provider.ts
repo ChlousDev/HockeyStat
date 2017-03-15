@@ -7,19 +7,19 @@ import { IAppConfig } from '../app/app.config.interface';
 
 import { ApiErrorHandlingProvider } from './apiErrorHandling.provider';
 
-import { TeamStatistics } from '../model/teamStatistics';
+import { TeamPointChart } from '../model/teamPointChart';
 
 @Injectable()
-export class TeamStatisticsProvider {
+export class TeamPointChartProvider {
 
-    private teamStatisticsApiUrl: string;
+    private teamPointChartApiUrl: string;
 
     constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig, private errorHandling: ApiErrorHandlingProvider) {
-        this.teamStatisticsApiUrl = this.config.apiEndpoint + 'teamStatistics';
+        this.teamPointChartApiUrl = this.config.apiEndpoint + 'teamPointChart';
     }
 
-    public getTeamComparison(seasonID: number, teamID: number): Observable<TeamStatistics> {
-        return this.http.get(this.teamStatisticsApiUrl + '/season/' + seasonID + '/team/' + teamID)
+    public getTeamPointChart(seasonID: number): Observable<TeamPointChart> {
+        return this.http.get(this.teamPointChartApiUrl + '/season/' + seasonID)
             .map((response) => response.json())
             ._catch(this.errorHandling.handleError);
     }

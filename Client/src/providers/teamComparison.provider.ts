@@ -12,14 +12,14 @@ import { TeamComparison } from '../model/teamComparison';
 @Injectable()
 export class TeamComparisonProvider {
 
-    private comparisonApiUrl: string;
+    private teamComparisonApiUrl: string;
 
     constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig, private errorHandling: ApiErrorHandlingProvider) {
-        this.comparisonApiUrl = this.config.apiEndpoint + 'teamComparison';
+        this.teamComparisonApiUrl = this.config.apiEndpoint + 'teamComparison';
     }
 
     public getTeamComparison(seasonID: number, team1ID: number, team2ID: number): Observable<TeamComparison> {
-        return this.http.get(this.comparisonApiUrl + '/season/' + seasonID + '/team1/' + team1ID + '/team2/' + team2ID)
+        return this.http.get(this.teamComparisonApiUrl + '/season/' + seasonID + '/team1/' + team1ID + '/team2/' + team2ID)
             .map((response) => response.json())
             ._catch(this.errorHandling.handleError);
     }

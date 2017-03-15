@@ -10,7 +10,7 @@
     background-color: mat-color($warn);
 }
 
-.mat-checkbox-indeterminate.mat-warn .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background{
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background{
     background-color: mat-color($primary);
 }
 

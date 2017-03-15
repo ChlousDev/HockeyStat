@@ -1,3 +1,47 @@
-<h1>
-  TeamPointsChart
-</h1>
+<div>
+  <h2>
+    Punkteentwicklung
+  </h2>
+</div>
+<div *ngIf=isLoadingCatalogData>
+  <md-spinner></md-spinner>
+</div>
+<div *ngIf=!isLoadingCatalogData>
+  <div fxLayout="row">
+    <div fxLyout="column">
+      <h6>Saison</h6>
+      <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
+        <md-option *ngFor="let season of seasons" [value]="season">
+          {{season.StartYear}} / {{season.StartYear+1}}
+        </md-option>
+      </md-select>
+    </div>
+    <button md-icon-button class="mat-primary" style="margin-top: 20px; margin-left: 18px" (click)=loadTeamPointChart()>
+           <md-icon class="icon-size-24">autorenew</md-icon>
+         </button>
+  </div>
+</div>
+<div *ngIf=isLoadingTeamPointChart>
+  <md-spinner></md-spinner>
+</div>
+<div *ngIf="!isLoadingTeamPointChart" style="margin-top: 15px; height: 70%">
+  <div style="height: 100%" fxLayout="row">
+    <div  fxFlex="80">
+    <canvas *ngIf="showChart" class="teamPointChart" baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="chartOptions"
+      legend="true" chartType="line"></canvas>
+    </div>
+    <div fxFlex="20" style="margin-left: 30px">
+      <div fxFlex="row" fxLayoutWrap>
+        <div *ngFor="let team of teams | teamsselectionorderby" fxFlex="25" fxLayoutGap="30px">
+          <md-checkbox [(ngModel)]="team.IsSelected" (change)="setChartData()" class="mat-primary">{{team.TeamName}}</md-checkbox>
+        </div>
+        <div fxFlex="100" fxLayoutGap="30px">
+          <md-checkbox [(ngModel)]="showAll" (change)="toggleShowAll()" class="mat-primary">Alle</md-checkbox>
+        </div>
+        <div fxFlex="100" fxLayoutGap="30px">
+          <md-checkbox [(ngModel)]="showEightPlace" (change)="setChartData()" class="mat-primary">8.Platz</md-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

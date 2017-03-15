@@ -25,12 +25,12 @@ namespace HockeyStat.API.Controllers
         }
 
         [HttpGet("Season/{seasonID}/Team1/{team1ID}/Team2/{team2ID}")]
-        public HttpResponseMessage Get(long seasonId, long team1Id, long team2Id)
+        public HttpResponseMessage Get(long seasonID, long team1ID, long team2ID)
         {
             HttpResponseMessage response = new HttpResponseMessage();
-            Season season = this.dataAccess.LoadSeason(seasonId);
-            Team team1 = this.dataAccess.LoadTeam(team1Id);
-            Team team2 = this.dataAccess.LoadTeam(team2Id);
+            Season season = this.dataAccess.LoadSeason(seasonID);
+            Team team1 = this.dataAccess.LoadTeam(team1ID);
+            Team team2 = this.dataAccess.LoadTeam(team2ID);
             if ((season == null) || (team1 == null) || (team2 == null))
             {
                 response = this.Request.CreateResponse(HttpStatusCode.NotFound);

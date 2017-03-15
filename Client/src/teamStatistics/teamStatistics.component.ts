@@ -17,7 +17,7 @@ import { TeamStatistics } from '../model/teamStatistics';
 export class TeamStatisticsComponent {
   public selectedSeason: Season;
   public seasons: Season[];
-  public team: Team;
+  public selectedTeam: Team;
   public teams: Team[];
 
   public isLoadingCatalogData: boolean = false;
@@ -53,9 +53,9 @@ export class TeamStatisticsComponent {
   }
 
   private loadTeamStatistics(): void {
-    if ((this.team) && (this.selectedSeason))
+    if ((this.selectedTeam) && (this.selectedSeason))
       this.isLoadingTeamStatistics = true;
-      this.teamStatisticsProvider.getTeamComparison(this.selectedSeason.ID, this.team.ID).subscribe(teamStatistics => {
+      this.teamStatisticsProvider.getTeamComparison(this.selectedSeason.ID, this.selectedTeam.ID).subscribe(teamStatistics => {
       this.teamStatistics = teamStatistics;
       this.isLoadingTeamStatistics = false;
     })
