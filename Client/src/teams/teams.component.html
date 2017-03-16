@@ -56,7 +56,7 @@
             </button>
           </td>
         </tr>
-        <tr *ngFor="let team of teams">
+        <tr *ngFor="let team of teams | teamsorderby">
           <td style="width: 75px">
             <md-input-container>
               <input mdInput [(ngModel)]="team.ShortName">

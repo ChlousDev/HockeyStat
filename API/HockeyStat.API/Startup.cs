@@ -28,7 +28,8 @@ namespace HockeyStat.API
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables()
-                .AddUserSecrets();
+                //.AddUserSecrets()
+                .AddJsonFile("secretsettings.json", optional: true, reloadOnChange: true);
             Configuration = builder.Build();
         }
 
@@ -57,7 +58,7 @@ namespace HockeyStat.API
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseCors(builder =>
-            builder.WithOrigins("http://localhost:4200")
+            builder.WithOrigins("http://localhost:4200")//, "http://hockeystat.azurewebsites.net")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .WithExposedHeaders("Set-Cookie")

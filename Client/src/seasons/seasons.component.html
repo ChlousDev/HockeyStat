@@ -46,7 +46,7 @@
             </button>
           </td>
         </tr>
-        <tr *ngFor="let season of seasons">
+        <tr *ngFor="let season of seasons | seasonsorderby">
           <td style="width: 120px">
             <md-input-container >
               <div fxLayout="row">

@@ -56,6 +56,7 @@
       "wwwroot",
       "**/*.cshtml",
       "appsettings.json",
+      "secretsettings.json",
       "web.config"
     ]
   },

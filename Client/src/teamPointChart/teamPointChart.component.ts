@@ -36,7 +36,7 @@ export class TeamPointChartComponent {
 
   constructor(private teamPointChartProvider: TeamPointChartProvider, private teamProvider: TeamProvider, private seasonProvider: SeasonProvider, private translateService: TranslateService) {
     this.init();
-    this.translateService.onLangChange.subscribe((event)=>{
+    this.translateService.onLangChange.subscribe((event) => {
       this.loadLabels();
     })
   }
@@ -88,45 +88,47 @@ export class TeamPointChartComponent {
   }
 
   public setChartData(): void {
-    this.showChart = false;
-    this.showAll = true;
-    var lineChartData = [];
-    var lineChartLabels = [];
-    var maxLabel: number = -1;
-    var showSerie: boolean;
-    var serieLabel: string;
-    this.teamPointChart.Series.forEach(serie => {
-      if (serie.Team) {
-        showSerie = this.teams.findIndex(t => t.TeamID == serie.Team.ID && t.IsSelected) >= 0;
-        serieLabel = serie.Team.ShortName;
-        this.showAll = this.showAll && showSerie;
+    if (this.teamPointChart) {
+      this.showChart = false;
+      this.showAll = true;
+      var lineChartData = [];
+      var lineChartLabels = [];
+      var maxLabel: number = -1;
+      var showSerie: boolean;
+      var serieLabel: string;
+      this.teamPointChart.Series.forEach(serie => {
+        if (serie.Team) {
+          showSerie = this.teams.findIndex(t => t.TeamID == serie.Team.ID && t.IsSelected) >= 0;
+          serieLabel = serie.Team.ShortName;
+          this.showAll = this.showAll && showSerie;
+        }
+        else {
+          showSerie = this.showEightPlace;
+          serieLabel = this.eightPlaceLabel;
+        }
+        if (showSerie) {
+          var data: number[] = [];
+          var label: number = 0;
+          serie.Points.forEach(points => {
+            data.push(points);
+            if (label > maxLabel) {
+              lineChartLabels.push('' + label);
+              maxLabel = label;
+            }
+            label++;
+          });
+          lineChartData.push({ data: data, label: serieLabel });
+          this.showChart = true;
+        }
+        else {
+          lineChartData.push({ data: [], label: serieLabel });
+        }
+      });
+      if (this.showChart) {
+        this.lineChartData = lineChartData;
+        this.lineChartLabels = lineChartLabels
       }
-      else {
-        showSerie = this.showEightPlace;
-        serieLabel = this.eightPlaceLabel;
-      }
-      if (showSerie) {
-        var data: number[] = [];
-        var label: number = 0;
-        serie.Points.forEach(points => {
-          data.push(points);
-          if (label > maxLabel) {
-            lineChartLabels.push('' + label);
-            maxLabel = label;
-          }
-          label++;
-        });
-        lineChartData.push({ data: data, label: serieLabel });
-        this.showChart = true;
-      }
-      else {
-        lineChartData.push({ data: [], label: serieLabel });
-      }
-    });
-    if (this.showChart) {
-      this.lineChartData = lineChartData;
-      this.lineChartLabels = lineChartLabels
+      this.isLoadingTeamPointChart = false;
     }
-    this.isLoadingTeamPointChart = false;
   }
 }
