@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { Md2Module } from 'md2';
 import { ChartsModule } from 'ng2-charts';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppConfig } from './app.config';
 import { APP_CONFIG } from './app.config.token';
@@ -15,9 +17,9 @@ import { TeamProvider } from '../providers/team.provider';
 import { SeasonProvider } from '../providers/season.provider';
 import { GameProvider } from '../providers/game.provider';
 import { StandingsProvider } from '../providers/standings.provider';
-import { TeamComparisonProvider} from '../providers/teamComparison.provider';
-import { TeamStatisticsProvider} from '../providers/teamStatistics.provider';
-import { TeamPointChartProvider} from '../providers/teamPointChart.provider';
+import { TeamComparisonProvider } from '../providers/teamComparison.provider';
+import { TeamStatisticsProvider } from '../providers/teamStatistics.provider';
+import { TeamPointChartProvider } from '../providers/teamPointChart.provider';
 import { AuthenticationProvider } from '../providers/authentication.provider';
 import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
 
@@ -36,6 +38,9 @@ import { TeamsOrderByPipe } from '../pipes/teamsOrderBy.pipe';
 import { GamesOrderByPipe } from '../pipes/gamesOrderBy.pipe';
 import { TeamSelectionOrderByPipe } from '../pipes/teamSelectionOrderBy.pipe';
 
+export function HttpLoaderFactory(http: Http) {
+    return new TranslateHttpLoader(http, './assets/translations/texts.', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -62,6 +67,13 @@ import { TeamSelectionOrderByPipe } from '../pipes/teamSelectionOrderBy.pipe';
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
     Md2Module.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      }
+    }),
     RouterModule.forRoot([
       {
         path: 'teamComparison',

@@ -1,7 +1,7 @@
-<div >
+<div>
   <div>
     <h2>
-      Spielergebnisse
+      {{'Results' | translate}}
     </h2>
   </div>
   <div *ngIf=isLoadingCatalogData>
@@ -9,7 +9,7 @@
   </div>
   <div *ngIf=!isLoadingCatalogData>
     <div>
-      <h6>Saison auswählen</h6>
+      <h6>{{'Season' | translate}}</h6>
       <md-select [(ngModel)]="selectedSeason" (change)="selectedSeasonChanged()" style="width: 150px; margin-top: 10px">
         <md-option *ngFor="let season of seasons" [value]="season">
           {{season.StartYear}} / {{season.StartYear+1}}
@@ -25,22 +25,22 @@
       <thead>
         <tr>
           <th style="width: 150px">
-            <h6>Datum</h6>
+            <h6>{{'Date' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Heimteam</h6>
+            <h6>{{'Hometeam' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Gastteam</h6>
+            <h6>{{'Guestteam' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>Ergebnis</h6>
+            <h6>{{'Result' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. V.</h6>
+            <h6>{{'OTResult' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. P.</h6>
+            <h6>{{'PSResult' | translate}}</h6>
           </th>
         </tr>
       </thead>
@@ -60,22 +60,22 @@
       <thead>
         <tr>
           <th style="width: 150px">
-            <h6>Datum</h6>
+            <h6>{{'Date' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Heimteam</h6>
+            <h6>{{'Hometeam' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Gastteam</h6>
+            <h6>{{'Guestteam' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>Ergebnis</h6>
+            <h6>{{'Result' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. V.</h6>
+            <h6>{{'OTResult' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. P.</h6>
+            <h6>{{'PSResult' | translate}}</h6>
           </th>
         </tr>
       </thead>

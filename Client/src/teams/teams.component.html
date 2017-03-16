@@ -1,7 +1,7 @@
 <div fxLayout="column">
   <div fxLayout="row">
     <h2>
-      Liste der Teams
+      {{'ListOfTeams' | translate}}
     </h2>
   </div>
  <div fxLayout="row" *ngIf=isLoading>
@@ -12,10 +12,10 @@
       <thead>
         <tr>
           <th style="width: 75px">
-            <h6>Kürzel</h6>
+            <h6>{{'TeamShortName' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Name</h6>
+            <h6>{{'Name' | translate}}</h6>
           </th>
         </tr>
       </thead>
@@ -31,10 +31,10 @@
       <thead>
         <tr>
           <th class="input-th" style="width: 75px">
-            <h6>Kürzel</h6>
+            <h6>{{'TeamShortName' | translate}}</h6>
           </th>
           <th class="input-th" style="width: 200px">
-            <h6>Name</h6>
+            <h6>{{'Name' | translate}}</h6>
           </th>
         </tr>
       </thead>

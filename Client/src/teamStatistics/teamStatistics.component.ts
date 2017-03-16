@@ -11,7 +11,7 @@ import { Team } from '../model/team';
 import { TeamStatistics } from '../model/teamStatistics';
 
 @Component({
-   templateUrl: './teamStatistics.component.html'
+  templateUrl: './teamStatistics.component.html'
 })
 
 export class TeamStatisticsComponent {
@@ -53,12 +53,13 @@ export class TeamStatisticsComponent {
   }
 
   private loadTeamStatistics(): void {
-    if ((this.selectedTeam) && (this.selectedSeason))
+    if ((this.selectedTeam) && (this.selectedSeason)) {
       this.isLoadingTeamStatistics = true;
       this.teamStatisticsProvider.getTeamComparison(this.selectedSeason.ID, this.selectedTeam.ID).subscribe(teamStatistics => {
-      this.teamStatistics = teamStatistics;
-      this.isLoadingTeamStatistics = false;
-    })
+        this.teamStatistics = teamStatistics;
+        this.isLoadingTeamStatistics = false;
+      })
+    }
   }
 }
 

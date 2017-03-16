@@ -1,7 +1,7 @@
 <div>
   <div>
     <h2>
-      Teamstatistik
+      {{'TeamStatistics' | translate}}
     </h2>
   </div>
   <div *ngIf=isLoadingCatalogData>
@@ -10,7 +10,7 @@
   <div *ngIf=!isLoadingCatalogData>
     <div fxLayout="row">
       <div>
-        <h6>Saison</h6>
+        <h6>{{'Season' | translate}}</h6>
         <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
           <md-option *ngFor="let season of seasons" [value]="season">
             {{season.StartYear}} / {{season.StartYear+1}}
@@ -20,7 +20,7 @@
     </div>
     <div fxLayout="row" style="margin-top:25px">
       <div>
-        <h6>Team</h6>
+        <h6>{{'Team' | translate}}</h6>
         <md-select [(ngModel)]="selectedTeam" style="width: 190px">
           <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
             {{team.Name}}
@@ -28,7 +28,7 @@
         </md-select>
       </div>
       <div>
-        <button md-icon-button class="mat-primary" style="margin-top: 20px; margin-left: 18px" (click)=loadTeamStatistics()>
+        <button md-icon-button class="mat-primary" style="margin-top: 15px; margin-left: 18px" (click)=loadTeamStatistics()>
            <md-icon class="icon-size-24">autorenew</md-icon>
          </button>
       </div>
@@ -41,7 +41,7 @@
 <div *ngIf="!isLoadingTeamStatistics && teamStatistics" style="margin-top: 15px">
   <div>
     <h3>
-      Ergebnisse
+      {{'Results' | translate}}
     </h3>
     <table *ngIf=loadTeamStatistics>
       <thead>
@@ -49,55 +49,55 @@
           <th style="width: 150px;">
           </th>
           <th style="width: 100px;  text-align: center">
-            <h6>Total</h6>
+            <h6>{{'Total' | translate}}</h6>
           </th>
           <th style="width: 100px;  text-align: center">
-            <h6>Prozent</h6>
+            <h6>{{'Percent' | translate}}</h6>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="width: 150px; text-align: left">Spiele</td>
+          <td style="width: 150px; text-align: left">{{'Games' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.Points}}</td>
           <td style="width: 100px; text-align: center"></td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Siege</td>
+          <td style="width: 150px; text-align: left">{{'Wins' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.Wins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.WinsPercent}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.WinsPercent | number: '1.1-1'}}</td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Siege n.V.</td>
+          <td style="width: 150px; text-align: left">{{'OTWins' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.OTWins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTWinsPercent}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTWinsPercent | number: '1.1-1'}}</td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Siege n.P.</td>
+          <td style="width: 150px; text-align: left">{{'PSWins' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.PSWins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSWinsPercent}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSWinsPercent | number: '1.1-1'}}</td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Niederlagen</td>
+          <td style="width: 150px; text-align: left">{{'Losses' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.Losses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.LossesPercent}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.LossesPercent | number: '1.1-1'}}</td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Niederlagen n.V.</td>
+          <td style="width: 150px; text-align: left">{{'OTLosses' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.OTLosses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTLossesPercent}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTLossesPercent | number: '1.1-1'}}</td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Niederlagen n.P.</td>
+          <td style="width: 150px; text-align: left">{{'PSLosses' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.PSLosses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSLossesPercent}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSLossesPercent | number: '1.1-1'}}</td>
         </tr>
       </tbody>
     </table>
   </div>
   <div>
     <h3>
-      Statistik
+      {{'Statistics' | translate}}
     </h3>
     <table *ngIf=loadTeamStatistics>
       <thead>
@@ -105,56 +105,56 @@
           <th style="width: 150px;">
           </th>
           <th style="width: 100px;  text-align: center">
-            <h6>Total</h6>
+            <h6>{{'Total' | translate}}</h6>
           </th>
           <th style="width: 100px;  text-align: center">
-            <h6>Pro Spiel</h6>
+            <h6>{{'PerGame' | translate}}</h6>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="width: 150px; text-align: left">Punkte</td>
+          <td style="width: 150px; text-align: left">{{'Points' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.Points}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PointsPerGame}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PointsPerGame | number: '1.1-1'}}</td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Tore</td>
+          <td style="width: 150px; text-align: left">{{'Goals' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScored}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredPerGame}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredPerGame | number: '1.1-1'}}</td>
         </tr>
         <tr>
-          <td style="width: 150px; text-align: left">Gegentore</td>
+          <td style="width: 150px; text-align: left">{{'GoalsAgainst' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredAgainst}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredAgainstPerGame}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredAgainstPerGame | number: '1.1-1'}}</td>
         </tr>
       </tbody>
     </table>
   </div>
   <div>
     <h3>
-      Spiele
+      {{'Games' | translate}}
     </h3>
     <table>
       <thead>
         <tr>
           <th style="width: 150px">
-            <h6>Datum</h6>
+            <h6>{{'Date' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Heimteam</h6>
+            <h6>{{'Hometeam' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Gastteam</h6>
+            <h6>{{'Guestteam' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>Ergebnis</h6>
+            <h6>{{'Result' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. V.</h6>
+            <h6>{{'OTResult' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. P.</h6>
+            <h6>{{'PSResult' | translate}}</h6>
           </th>
         </tr>
       </thead>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import { SeasonsOrderByPipe } from '../pipes/seasonsOrderBy.pipe';
 
 import { TeamPointChartProvider } from '../providers/teamPointChart.provider';
@@ -30,9 +32,20 @@ export class TeamPointChartComponent {
   public lineChartData: Array<any>;
   public lineChartLabels: Array<any>;
   public chartOptions: any = { responsive: true, animation: false, legend: { position: 'bottom', fill: false, labels: { usePointStyle: true } }, elements: { line: { tension: 0, backgroundColor: null, fill: false } } };
+  private eightPlaceLabel: string;
 
-  constructor(private teamPointChartProvider: TeamPointChartProvider, private teamProvider: TeamProvider, private seasonProvider: SeasonProvider) {
+  constructor(private teamPointChartProvider: TeamPointChartProvider, private teamProvider: TeamProvider, private seasonProvider: SeasonProvider, private translateService: TranslateService) {
     this.init();
+    this.translateService.onLangChange.subscribe((event)=>{
+      this.loadLabels();
+    })
+  }
+
+  private loadLabels(): void {
+    this.translateService.get("EightPlace").subscribe(eightPlaceLabel => {
+      this.eightPlaceLabel = eightPlaceLabel;
+      this.setChartData();
+    })
   }
 
   private init(): void {
@@ -64,7 +77,7 @@ export class TeamPointChartComponent {
       this.isLoadingTeamPointChart = true;
       this.teamPointChartProvider.getTeamPointChart(this.selectedSeason.ID).subscribe(teamPointChart => {
         this.teamPointChart = teamPointChart;
-        this.setChartData();
+        this.loadLabels();
       })
     }
   }
@@ -90,7 +103,7 @@ export class TeamPointChartComponent {
       }
       else {
         showSerie = this.showEightPlace;
-        serieLabel = '8. Platz';
+        serieLabel = this.eightPlaceLabel;
       }
       if (showSerie) {
         var data: number[] = [];

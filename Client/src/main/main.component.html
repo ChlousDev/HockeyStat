@@ -1,30 +1,40 @@
 <div fxLayout="column" style="height: 100%">
   <div fxFlex="100px">
     <h1 style="text-align: center; width:100%">
-      Hockey Statistik
+      {{'Title' | translate}}
     </h1>
   </div>
   <div fxFlex="50px">
-  <div fxLayout="row" class="primary-color" style="height: 45px">
-    <div><a md-button class="mat-accent toolbarLink" routerLink="/standings">Tabelle</a></div>
-    <div><a md-button class="mat-accent toolbarLink" routerLink="/teamPointChart">Punkteentwicklung</a></div>
-    <div><a md-button class="mat-accent toolbarLink" routerLink="/teamComparison">Direktvergleich</a></div>
-    <div><a md-button class="mat-accent toolbarLink" routerLink="/teamStatistics">Teamstatistik</a></div>
-    <div><a md-button class="mat-accent toolbarLink" routerLink="/games">Games</a></div>
-    <div><a md-button class="mat-accent toolbarLink" routerLink="/teams">Teams</a></div>
-    <div><a md-button class="mat-accent toolbarLink" routerLink="/seasons">Seasons</a></div>
-    <div fxFlex></div>
-    <div *ngIf="isAdmin">
-      <button md-icon-button class="mat-accent" style="margin-right: 20px" (click)=logout()>
+    <div fxLayout="row" class="primary-color" style="height: 45px">
+      <div><a md-button class="mat-accent toolbarLink" routerLink="/standings">{{'Standings' | translate}}</a></div>
+      <div><a md-button class="mat-accent toolbarLink" routerLink="/teamPointChart">{{'PointProgress' | translate}}</a></div>
+      <div><a md-button class="mat-accent toolbarLink" routerLink="/teamComparison">{{'TeamComparison' | translate}}</a></div>
+      <div><a md-button class="mat-accent toolbarLink" routerLink="/teamStatistics">{{'TeamStatistics' | translate}}</a></div>
+      <div><a md-button class="mat-accent toolbarLink" routerLink="/games">{{'Games' | translate}}</a></div>
+      <div><a md-button class="mat-accent toolbarLink" routerLink="/teams">{{'Teams' | translate}}</a></div>
+      <div><a md-button class="mat-accent toolbarLink" routerLink="/seasons">{{'Seasons' | translate}}</a></div>
+      <div fxFlex></div>
+      <div *ngIf="currentLang==='en'">
+        <button md-icon-button class="mat-accent" style="margin-right: 0px" (click)="setLanguage('de')">
+        <img class="icon-size-36" src="../assets/images/flag.de.png"/>
+      </button>
+      </div>
+      <div *ngIf="currentLang==='de'">
+        <button md-icon-button class="mat-accent" style="margin-right: 0px" (click)="setLanguage('en')">
+        <img class="icon-size-36" src="../assets/images/flag.en.png"/>
+      </button>
+      </div>
+      <div *ngIf="isAdmin">
+        <button md-icon-button class="mat-accent" style="margin-right: 20px" (click)=logout()>
         <md-icon class="icon-size-42">verified_user</md-icon>
       </button>
-    </div>
-    <div *ngIf="!isAdmin">
-      <button md-icon-button class="mat-accent" style="margin-right: 20px" (click)=openLoginDialog()>
+      </div>
+      <div *ngIf="!isAdmin">
+        <button md-icon-button class="mat-accent" style="margin-right: 20px" (click)=openLoginDialog()>
         <md-icon class="icon-size-42">account_box</md-icon>
       </button>
+      </div>
     </div>
-  </div>
   </div>
   <div fxFlex style="margin-left:10px; overflow-y: auto">
     <router-outlet></router-outlet>

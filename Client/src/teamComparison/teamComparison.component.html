@@ -1,7 +1,7 @@
 <div>
   <div>
     <h2>
-      Direktvergleich
+      {{'TeamComparison'  | translate}}
     </h2>
   </div>
   <div *ngIf=isLoadingCatalogData>
@@ -10,7 +10,7 @@
   <div *ngIf=!isLoadingCatalogData>
     <div fxLayout="row">
       <div>
-        <h6>Saison</h6>
+        <h6>{{'Season'  | translate}}</h6>
         <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
           <md-option *ngFor="let season of seasons" [value]="season">
             {{season.StartYear}} / {{season.StartYear+1}}
@@ -20,7 +20,7 @@
     </div>
     <div fxLayout="row" style="margin-top:25px">
       <div>
-        <h6>Team 1</h6>
+        <h6>{{'FirstTeam' | translate}}</h6>
         <md-select [(ngModel)]="team1" style="width: 190px">
           <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
             {{team.Name}}
@@ -28,7 +28,7 @@
         </md-select>
       </div>
       <div style="margin-left:25px">
-        <h6>Team 2</h6>
+        <h6>{{'Second' | translate}}</h6>
         <md-select [(ngModel)]="team2" style="width: 190px">
           <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
             {{team.Name}}
@@ -36,7 +36,7 @@
         </md-select>
       </div>
       <div>
-        <button md-icon-button class="mat-primary" style="margin-top: 20px; margin-left: 18px" (click)=loadTeamComparison()>
+        <button md-icon-button class="mat-primary" style="margin-top: 15px; margin-left: 18px" (click)=loadTeamComparison()>
            <md-icon class="icon-size-24">autorenew</md-icon>
          </button>
       </div>
@@ -49,7 +49,7 @@
 <div *ngIf="!isLoadingTeamComparison && teamComparison" style="margin-top: 15px">
   <div>
     <h3>
-      Übersicht
+      {{'Overview' | translate}}
     </h3>
     <table *ngIf=loadTeamComparison>
       <thead>
@@ -68,31 +68,31 @@
       </thead>
       <tbody>
         <tr>
-          <td style="width: 250px; text-align: left">Punkte</td>
+          <td style="width: 250px; text-align: left">{{'Points' | translate}}</td>
           <td style="width: 200px; text-align: right">{{teamComparison.PointsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
           <td style="width: 200px; text-align: left">{{teamComparison.PointsTeam2}}</td>
         </tr>
         <tr>
-          <td style="width: 250px; text-align: left">Siege</td>
+          <td style="width: 250px; text-align: left">{{'Wins' | translate}}</td>
           <td style="width: 200px; text-align: right">{{teamComparison.WinsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
           <td style="width: 200px; text-align: left">{{teamComparison.WinsTeam2}}</td>
         </tr>
         <tr>
-          <td style="width: 250px; text-align: left">Siege n.V.</td>
+          <td style="width: 250px; text-align: left">{{'OTWins' | translate}}</td>
           <td style="width: 200px; text-align: right">{{teamComparison.OTWinsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
           <td style="width: 200px; text-align: left">{{teamComparison.OTWinsTeam2}}</td>
         </tr>
         <tr>
-          <td style="width: 250px; text-align: left">Siege n.P.</td>
+          <td style="width: 250px; text-align: left">{{'PSWins' | translate}}</td>
           <td style="width: 200px; text-align: right">{{teamComparison.PSWinsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
           <td style="width: 200px; text-align: left">{{teamComparison.PSWinsTeam2}}</td>
         </tr>
          <tr>
-          <td style="width: 250px; text-align: left">Tore</td>
+          <td style="width: 250px; text-align: left">{{'Goals' | translate}}</td>
           <td style="width: 200px; text-align: right">{{teamComparison.GoalsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
           <td style="width: 200px; text-align: left">{{teamComparison.GoalsTeam2}}</td>
@@ -102,28 +102,28 @@
   </div>
   <div>
     <h3>
-      Spiele
+      {{'Games' | translate}}
     </h3>
     <table>
       <thead>
         <tr>
           <th style="width: 150px">
-            <h6>Datum</h6>
+            <h6>{{'Date' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Heimteam</h6>
+            <h6>{{'Hometeam' | translate}}</h6>
           </th>
           <th style="width: 200px">
-            <h6>Gastteam</h6>
+            <h6>{{'Guestteam' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>Ergebnis</h6>
+            <h6>{{'Result' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. V.</h6>
+            <h6>{{'OTResult' | translate}}</h6>
           </th>
           <th style="width: 70px; text-align: center">
-            <h6>n. P.</h6>
+            <h6>{{'PSResult' | translate}}</h6>
           </th>
         </tr>
       </thead>

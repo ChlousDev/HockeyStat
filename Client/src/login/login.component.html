@@ -1,18 +1,18 @@
 <div class="primary-color" style="min-width: 300px; height: 30px; margin-bottom: 15px">
     <h2 md-dialog-title style="padding-top: 5px; padding-left: 5px">
-        Login
+        {{'Login' | translate}}
     </h2>
 </div>
 <md-dialog-content>
     <div fxLayout="column">
         <div fxLayout="row">
             <md-input-container>
-                <input mdInput [(ngModel)]="userName" placeholder="Username">
+                <input mdInput [(ngModel)]="userName" placeholder="{{'Username' | translate}}">
             </md-input-container>
         </div>
         <div fxLayout="row">
             <md-input-container>
-                <input type="password" mdInput [(ngModel)]="password" placeholder="Passwort">
+                <input type="password" mdInput [(ngModel)]="password" placeholder="{{'Password' | translate}}">
             </md-input-container>
         </div>
     </div>
@@ -20,7 +20,7 @@
 <md-dialog-actions>
     <div fxLayout="column" fxFlexFill>
         <div fxLayout="row-reverse">
-            <button md-raised-button md-dialog-close class="mat-primary" (click)=login()>Login</button>
+            <button md-raised-button md-dialog-close class="mat-primary" (click)=login()>{{'Login' | translate}}</button>
         </div>
     </div>
 </md-dialog-actions>

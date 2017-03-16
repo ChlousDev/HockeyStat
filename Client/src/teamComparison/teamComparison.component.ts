@@ -56,11 +56,12 @@ export class TeamComparisonComponent {
   }
 
   private loadTeamComparison(): void {
-    if ((this.team1) && (this.team2) && (this.selectedSeason))
+    if ((this.team1) && (this.team2) && (this.selectedSeason)) {
       this.isLoadingTeamComparison = true;
       this.teamComparisonProvider.getTeamComparison(this.selectedSeason.ID, this.team1.ID, this.team2.ID).subscribe(teamComparison => {
-      this.teamComparison = teamComparison;
-      this.isLoadingTeamComparison = false;
-    })
+        this.teamComparison = teamComparison;
+        this.isLoadingTeamComparison = false;
+      })
+    }
   }
 }

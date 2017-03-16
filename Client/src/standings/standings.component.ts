@@ -42,11 +42,12 @@ export class StandingsComponent {
   }
 
   private loadStandings(): void {
-    if ((this.date) && (this.selectedSeason))
+    if ((this.date) && (this.selectedSeason)) {
       this.isLoadingStandings = true;
-    this.standingsProvider.getStandings(this.selectedSeason.ID, this.date).subscribe(standings => {
-      this.standings = standings;
-      this.isLoadingStandings = false;
-    })
+      this.standingsProvider.getStandings(this.selectedSeason.ID, this.date).subscribe(standings => {
+        this.standings = standings;
+        this.isLoadingStandings = false;
+      })
+    }
   }
 }
