@@ -82,7 +82,7 @@
       <tbody>
         <tr>
           <td style="width: 150px">
-            <md2-datepicker [(ngModel)]="newGame.Date" format="dd.MM.y"></md2-datepicker>
+            <md2-datepicker class="datepickerWidth" [(ngModel)]="newGame.Date" format="dd.MM.y"></md2-datepicker>
           </td>
           <td style="width: 200px">
             <md-select [(ngModel)]="newGame.HomeTeam" style="width: 190px">
@@ -142,7 +142,7 @@
         </tr>
         <tr *ngFor="let game of games">
           <td style="width: 150px">
-            <md2-datepicker [(ngModel)]="game.Date" format="dd.MM.y"></md2-datepicker>
+            <md2-datepicker class="datepickerWidth" [(ngModel)]="game.Date" format="dd.MM.y"></md2-datepicker>
           </td>
           <td style="width: 200px">
             <md-select [(ngModel)]="game.HomeTeam" style="width: 190px">

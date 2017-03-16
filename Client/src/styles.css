@@ -21,8 +21,10 @@ h5 {
 
 h6 {
     font-size: 1.1em;
-    -webkit-margin-after: 0em;
-    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em !important;
+    -webkit-margin-before: 0em !important;
+    margin-top: 0em !important;
+    margin-bottom: 0em !important;
 }
 
 th {
@@ -83,6 +85,11 @@ td > md2-datepicker > .md2-datepicker-trigger > .md2-datepicker-icon{
 }
 
 .md2-datepicker-input{
+    min-width: 100px !important;
+    width: 100px !important;
+}
+
+.datepickerWidth{
     min-width: 100px !important;
     width: 100px !important;
 }
