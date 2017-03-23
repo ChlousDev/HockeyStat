@@ -59,38 +59,38 @@
       <tbody>
         <tr>
           <td style="width: 150px; text-align: left">{{'Games' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GamesPlayed}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.GamesPlayed.length}}</td>
           <td style="width: 100px; text-align: center"></td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'Wins' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.Wins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.WinsPercent | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.WinsPercent | number: '1.0-0'}} % </td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'OTWins' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.OTWins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTWinsPercent | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTWinsPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'PSWins' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.PSWins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSWinsPercent | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSWinsPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'Losses' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.Losses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.LossesPercent | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.LossesPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'OTLosses' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.OTLosses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTLossesPercent | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.OTLossesPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'PSLosses' | translate}}</td>
           <td style="width: 100px; text-align: center">{{teamStatistics.PSLosses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSLossesPercent | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.PSLossesPercent | number: '1.0-0'}} %</td>
         </tr>
       </tbody>
     </table>
