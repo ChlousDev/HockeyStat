@@ -43,11 +43,12 @@
     "Login": "Login",
     "Username": "Username",
     "Password": "Passwort",
-    "Results": "Spielergebnisse",
+    "GameResults": "Spielergebnisse",
     "ListOfSeasons": "Liste der Saisons",
     "ListOfTeams": "Liste der Teams",
     "Total": "Total",
     "Percent": "Prozent",
     "Statistics": "Statistik",
-    "PerGame": "Pro Spiel"
+    "PerGame": "Pro Spiel",
+    "Results": "Resultate"
 }
