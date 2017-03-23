@@ -18,7 +18,7 @@ export class TeamStatisticsProvider {
         this.teamStatisticsApiUrl = this.config.apiEndpoint + 'teamStatistics';
     }
 
-    public getTeamComparison(seasonID: number, teamID: number): Observable<TeamStatistics> {
+    public getTeamStatistics(seasonID: number, teamID: number): Observable<TeamStatistics> {
         return this.http.get(this.teamStatisticsApiUrl + '/season/' + seasonID + '/team/' + teamID)
             .map((response) => response.json())
             ._catch(this.errorHandling.handleError);

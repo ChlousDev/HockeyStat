@@ -55,7 +55,7 @@ export class TeamStatisticsComponent {
   private loadTeamStatistics(): void {
     if ((this.selectedTeam) && (this.selectedSeason)) {
       this.isLoadingTeamStatistics = true;
-      this.teamStatisticsProvider.getTeamComparison(this.selectedSeason.ID, this.selectedTeam.ID).subscribe(teamStatistics => {
+      this.teamStatisticsProvider.getTeamStatistics(this.selectedSeason.ID, this.selectedTeam.ID).subscribe(teamStatistics => {
         this.teamStatistics = teamStatistics;
         this.isLoadingTeamStatistics = false;
       })
