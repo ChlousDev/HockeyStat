@@ -1,0 +1,147 @@
+<div>
+  <div>
+    <h2>
+      {{'SeasonStatistics' | translate}}
+    </h2>
+  </div>
+  <div *ngIf=isLoadingCatalogData>
+    <md-spinner></md-spinner>
+  </div>
+  <div *ngIf=!isLoadingCatalogData>
+    <div fxLayout="row">
+      <div>
+        <h6>{{'Season' | translate}}</h6>
+        <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
+          <md-option *ngFor="let season of seasons" [value]="season">
+            {{season.StartYear}} / {{season.StartYear+1}}
+          </md-option>
+        </md-select>
+      </div>
+      <button md-icon-button class="mat-primary" style="margin-top: 25px; margin-left: 18px" (click)=loadSeasonStatistics()>
+           <md-icon class="icon-size-24">autorenew</md-icon>
+         </button>
+    </div>
+  </div>
+  <div *ngIf=isLoadingSeasonStatistics>
+    <md-spinner></md-spinner>
+  </div>
+  <div *ngIf="!isLoadingSeasonStatistics && seasonStatistics" style="margin-top: 15px">
+    <div>
+      <h3>
+        {{'State' | translate}}
+      </h3>
+      <table *ngIf=seasonStatistics>
+        <thead>
+          <tr>
+            <th style="width: 220px;">
+            </th>
+            <th style="width: 100px;  text-align: center">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'GamesPlayed' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GamesPlayed}}</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'Completion' | translate}}</td>
+            <td style="width: 100px; text-align: center; padding-left: 15px">{{seasonStatistics.Completion | number:number: '1.0-0'}} %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>
+        {{'Results' | translate}}
+      </h3>
+      <table *ngIf=seasonStatistics>
+        <thead>
+          <tr>
+            <th style="width: 220px;">
+            </th>
+            <th style="width: 100px;  text-align: center">
+              <h6>{{'Total' | translate}}</h6>
+            </th>
+            <th style="width: 100px;  text-align: center">
+              <h6>{{'Percent' | translate}}</h6>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'DecidedInNormalTime' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GamesDecidedInNormalTime}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GamesDecidedInNormalTimePercent | number: '1.0-0'}} %</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'DecidedInOverTime' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GamesDecidedInOverTime}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GamesDecidedInOverTimePercent | number: '1.0-0'}} %</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'DecidedInPenaltyShots' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GamesDecidedInPenaltyShots}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GamesDecidedInPenaltyShotsPercent | number: '1.0-0'}} %</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'HomeWins' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.HomeWins}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.HomeWinsPercent | number: '1.0-0'}} %</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'GuestWins' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GuestWins}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GuestWinsPercent | number: '1.0-0'}} %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>
+        {{'Statistics' | translate}}
+      </h3>
+      <table *ngIf=seasonStatistics>
+        <thead>
+          <tr>
+            <th style="width: 220px;">
+            </th>
+            <th style="width: 100px;  text-align: center">
+              <h6>{{'Total' | translate}}</h6>
+            </th>
+            <th style="width: 100px;  text-align: center">
+              <h6>{{'PerGame' | translate}}</h6>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'PointsHomeTeam' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.HomePoints}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.HomePointsPerGame | number: '1.1-1'}}</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'PointsGuestTeam' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GuestPoints}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GuestPointsPerGame | number: '1.1-1'}}</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'Goals' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GoalsScored}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GoalsScoredPerGame | number: '1.1-1'}}</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'GoalsHomeTeam' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.HomeGoalsScored}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.HomeGoalsScoredPerGame | number: '1.1-1'}}</td>
+          </tr>
+          <tr>
+            <td style="width: 220px; text-align: left">{{'GoalsGuestTeam' | translate}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GuestGoalsScored}}</td>
+            <td style="width: 100px; text-align: center">{{seasonStatistics.GuestGoalsScoredPerGame | number: '1.1-1'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ import { StandingsProvider } from '../providers/standings.provider';
 import { TeamComparisonProvider } from '../providers/teamComparison.provider';
 import { TeamStatisticsProvider } from '../providers/teamStatistics.provider';
 import { TeamPointChartProvider } from '../providers/teamPointChart.provider';
+import { SeasonStatisticsProvider } from '../providers/seasonStatistics.provider';
 import { AuthenticationProvider } from '../providers/authentication.provider';
 import { ApiErrorHandlingProvider } from '../providers/apiErrorHandling.provider';
 
@@ -31,6 +32,7 @@ import { StandingsComponent } from '../standings/standings.component';
 import { TeamPointChartComponent } from '../teamPointChart/teamPointChart.component';
 import { TeamsComponent } from '../teams/teams.component';
 import { TeamStatisticsComponent } from '../teamStatistics/teamStatistics.component';
+import { SeasonStatisticsComponent } from '../seasonStatistics/seasonStatistics.component';
 import { LoginComponent } from '../login/login.component';
 
 import { SeasonsOrderByPipe } from '../pipes/seasonsOrderBy.pipe';
@@ -39,7 +41,7 @@ import { GamesOrderByPipe } from '../pipes/gamesOrderBy.pipe';
 import { TeamSelectionOrderByPipe } from '../pipes/teamSelectionOrderBy.pipe';
 
 export function HttpLoaderFactory(http: Http) {
-    return new TranslateHttpLoader(http, './assets/translations/texts.', '.json');
+  return new TranslateHttpLoader(http, './assets/translations/texts.', '.json');
 }
 
 @NgModule({
@@ -53,6 +55,7 @@ export function HttpLoaderFactory(http: Http) {
     TeamPointChartComponent,
     TeamsComponent,
     TeamStatisticsComponent,
+    SeasonStatisticsComponent,
     LoginComponent,
     SeasonsOrderByPipe,
     TeamsOrderByPipe,
@@ -104,6 +107,10 @@ export function HttpLoaderFactory(http: Http) {
         component: TeamStatisticsComponent,
       },
       {
+        path: 'seasonStatistics',
+        component: SeasonStatisticsComponent,
+      },
+      {
         path: '',
         redirectTo: '/standings',
         pathMatch: 'full'
@@ -124,6 +131,7 @@ export function HttpLoaderFactory(http: Http) {
     TeamComparisonProvider,
     TeamStatisticsProvider,
     TeamPointChartProvider,
+    SeasonStatisticsProvider,
     AuthenticationProvider
   ],
   entryComponents: [LoginComponent],

@@ -50,5 +50,18 @@
     "Percent": "Prozent",
     "Statistics": "Statistik",
     "PerGame": "Pro Spiel",
-    "Results": "Resultate"
+    "Results": "Resultate",
+    "SeasonStatistics": "Saisonstatistik",
+    "State": "Status",
+    "GamesPlayed": "Gespielte Spiele",
+    "Completion": "Komplettierung",
+    "DecidedInNormalTime": "Entschieden in regulärer Spielzeit",
+    "DecidedInOverTime" : "Entschieden in Verlängerung",
+    "DecidedInPenaltyShots" : "Entschieden nach Penaltyschiessen",
+    "HomeWins": "Siege Heimteam",
+    "GuestWins": "Siege Gastteam",
+    "PointsHomeTeam": "Punkte Heimteam",
+    "PointsGuestTeam": "Punkte Gastteam",
+    "GoalsHomeTeam": "Tore Heimteam",
+    "GoalsGuestTeam": "Tore Gastteam"
 }

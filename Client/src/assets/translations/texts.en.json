@@ -50,5 +50,18 @@
     "Percent": "Percent",
     "Statistics": "Statistics",
     "PerGame": "Per Game",
-    "Results": "Resultats"
+    "Results": "Results",
+    "SeasonStatistics": "Saison Statistics",
+    "State": "State",
+    "GamesPlayed": "Games played",
+    "Completion": "Completion",
+    "DecidedInNormalTime": "Decided after normal time",
+    "DecidedInOverTime": "Decided after over time",
+    "DecidedInPenaltyShots": "Decided after penalty shots",
+    "HomeWins": "Wins home team",
+    "GuestWins": "Wins guest team",
+    "PointsHomeTeam": "Points home team",
+    "PointsGuestTeam": "Points guest team",
+    "GoalsHomeTeam": "Goals home team",
+    "GoalsGuestTeam": "Goals guest team"
 }
