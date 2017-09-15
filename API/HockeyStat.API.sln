@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HockeyStat.API", "HockeyStat.API\HockeyStat.API.xproj", "{6B9A734B-D55A-4A7A-B965-4C1F5DA47FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyStat.API", "HockeyStat.API\HockeyStat.API.csproj", "{6B9A734B-D55A-4A7A-B965-4C1F5DA47FA5}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "HockeyStat.Model", "HockeyStat.Model\HockeyStat.Model.xproj", "{6430EDC2-5705-43F2-96B0-5C78B8805F0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyStat.Model", "HockeyStat.Model\HockeyStat.Model.csproj", "{6430EDC2-5705-43F2-96B0-5C78B8805F0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B873041F-4DF8-44C5-9FA3-37BD9ADDAFD3}
 	EndGlobalSection
 EndGlobal
