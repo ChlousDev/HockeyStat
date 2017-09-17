@@ -7,10 +7,10 @@ namespace HockeyStat.API
 {
     public class ConfigurationOptions
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        public const string AuthenticationScheme = "HockeyStatAuthentication";
+        public const string AuthenticationCookieName = "HockeyStatAuth";
 
-        public string DBUserName { get; set; }
-        public string DBPassword { get; set; }
+        public string AdminUserName { get; set; }
+        public string AdminPassword { get; set; }
     }
 }

@@ -74,12 +74,12 @@ export class GamesComponent {
   private loadGames(): void {
     if ((this.teams) && (this.selectedSeason)) {
       this.isLoadingGames = true;
-      this.gameProvider.getGames(this.selectedSeason.ID, this.currentPage, 15).subscribe(pagedList => {
-        this.games = pagedList.Items;
-        this.totalPages = pagedList.TotalPages;
+      this.gameProvider.getGames(this.selectedSeason.id, this.currentPage, 15).subscribe(pagedList => {
+        this.games = pagedList.items;
+        this.totalPages = pagedList.totalPages;
         this.games.forEach(game => {
-          game.HomeTeam = this.teams.find(t => t.ID == game.HomeTeam.ID);
-          game.GuestTeam = this.teams.find(t => t.ID == game.GuestTeam.ID);
+          game.homeTeam = this.teams.find(t => t.id == game.homeTeam.id);
+          game.guestTeam = this.teams.find(t => t.id == game.guestTeam.id);
         });
         this.isLoadingGames = false;
       })
@@ -109,11 +109,11 @@ export class GamesComponent {
   }
 
   public addGame(): void {
-    if ((this.newGame.Date) && (this.selectedSeason) && (this.newGame.HomeTeam) && (this.newGame.GuestTeam) && (this.newGame.HomeScore !== null)
-      && (this.newGame.GuestScore !== null) && (this.newGame.OTHomeScore !== null) && (this.newGame.OTGuestScore !== null) && (this.newGame.PSHomeScore !== null)
-      && (this.newGame.PSGuestScore !== null)) {
-        this.newGame.Season = this.selectedSeason;
-        this.lastGameDate = this.newGame.Date;
+    if ((this.newGame.date) && (this.selectedSeason) && (this.newGame.homeTeam) && (this.newGame.guestTeam) && (this.newGame.homeScore !== null)
+      && (this.newGame.guestScore !== null) && (this.newGame.otHomeScore !== null) && (this.newGame.otGuestScore !== null) && (this.newGame.psHomeScore !== null)
+      && (this.newGame.psGuestScore !== null)) {
+        this.newGame.season = this.selectedSeason;
+        this.lastGameDate = this.newGame.date;
         this.gameProvider.saveGame(this.newGame).subscribe(() => {
         this.reload();
       })
@@ -121,9 +121,9 @@ export class GamesComponent {
   }
 
   public updateGame(game: Game): void {
-    if ((game.Date) && (this.selectedSeason) && (game.HomeTeam) && (game.GuestTeam) && (game.HomeScore !== null)
-      && (game.GuestScore !== null) && (game.OTHomeScore !== null) && (game.OTGuestScore !== null) && (game.PSHomeScore !== null)
-      && (game.PSGuestScore !== null)) {
+    if ((game.date) && (this.selectedSeason) && (game.homeTeam) && (game.guestTeam) && (game.homeScore !== null)
+      && (game.guestScore !== null) && (game.otHomeScore !== null) && (game.otGuestScore !== null) && (game.psHomeScore !== null)
+      && (game.psGuestScore !== null)) {
         this.gameProvider.saveGame(game).subscribe(() => {
         this.reload();
       })

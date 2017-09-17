@@ -2,8 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { APP_CONFIG } from '../app/app.config.token';
-import { IAppConfig } from '../app/app.config.interface';
+import { environment } from '../environments/environment';
 
 import { ApiErrorHandlingProvider } from './apiErrorHandling.provider';
 
@@ -14,8 +13,8 @@ export class SeasonStatisticsProvider {
 
     private teamStatisticsApiUrl: string;
 
-    constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig, private errorHandling: ApiErrorHandlingProvider) {
-        this.teamStatisticsApiUrl = this.config.apiEndpoint + 'seasonStatistics';
+    constructor(private http: Http, private errorHandling: ApiErrorHandlingProvider) {
+        this.teamStatisticsApiUrl = environment.apiEndpoint + 'seasonStatistics';
     }
 
     public getSeasonStatistics(seasonID: number): Observable<SeasonStatistics> {

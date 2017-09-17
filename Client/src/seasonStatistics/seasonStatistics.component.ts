@@ -42,7 +42,7 @@ export class SeasonStatisticsComponent {
   private loadSeasonStatistics(): void {
     if (this.selectedSeason) {
       this.isLoadingSeasonStatistics = true;
-      this.seasonStatisticsProvider.getSeasonStatistics(this.selectedSeason.ID).subscribe(seasonStatistics => {
+      this.seasonStatisticsProvider.getSeasonStatistics(this.selectedSeason.id).subscribe(seasonStatistics => {
         this.seasonStatistics = seasonStatistics;
         this.isLoadingSeasonStatistics = false;
       })

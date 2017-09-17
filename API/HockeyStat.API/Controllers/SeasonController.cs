@@ -7,15 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using HockeyStat.Model.DataAccess;
 using HockeyStat.Model.Model;
-using HockeyStat.API.Util;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace HockeyStat.API.Controllers
 {
     [Route("api/[controller]")]
-    public class SeasonController : ApiController
+    public class SeasonController : ControllerBase
     {
         private HockeyStatDataAccess dataAccess;
 
@@ -25,42 +24,44 @@ namespace HockeyStat.API.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get()
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Get()
         {
-            return ResponseCreator.CreateNoCacheResponse(this.Request, this.dataAccess.LoadSeasons());
+            return this.StatusCode(StatusCodes.Status200OK, this.dataAccess.LoadSeasons());
         }
 
         [HttpPut]
-        [Authorize(Roles = "admin")]
-        public HttpResponseMessage Put([FromBody] Season season)
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        [Authorize(AuthenticationSchemes = ConfigurationOptions.AuthenticationScheme, Roles = "admin")]
+        public ObjectResult Put([FromBody] Season season)
         {
-            HttpResponseMessage response = null;
+            ObjectResult response = null;
             if (season.ID > 0)
             {
                 this.dataAccess.SaveSeason(season);
-                response = this.Request.CreateResponse(HttpStatusCode.OK);
+                response = this.StatusCode(StatusCodes.Status200OK,"OK");
             }
             else
             {
-                response = this.Request.CreateResponse(HttpStatusCode.BadRequest, "New items have to be created with a Http-POST");
+                response = this.StatusCode(StatusCodes.Status400BadRequest, "New items have to be created with a Http-POST");
             }
             return response;
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
-        public HttpResponseMessage Post([FromBody] Season season)
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        [Authorize(AuthenticationSchemes = ConfigurationOptions.AuthenticationScheme, Roles = "admin")]
+        public ObjectResult Post([FromBody] Season season)
         {
-            HttpResponseMessage response = null;
+            ObjectResult response = null;
             if (season.ID <= 0)
             {
                 long seasonID = this.dataAccess.SaveSeason(season);
-                response = this.Request.CreateResponse(HttpStatusCode.Created);
-                response.Headers.Location = new Uri(this.Request.RequestUri + "/" + seasonID.ToString());
+                response = this.CreatedAtAction("Post", new { id = seasonID }, season);
             }
             else
             {
-                response = this.Request.CreateResponse(HttpStatusCode.BadRequest, "Existing items can only be Updated with a Http-PUT");
+                response = this.StatusCode(StatusCodes.Status400BadRequest, "Existing items can only be Updated with a Http-PUT");
             }
             return response;
         }

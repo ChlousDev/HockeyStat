@@ -2,8 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { APP_CONFIG } from '../app/app.config.token';
-import { IAppConfig } from '../app/app.config.interface';
+import { environment } from '../environments/environment';
 
 import { ApiErrorHandlingProvider } from './apiErrorHandling.provider';
 
@@ -14,8 +13,8 @@ export class TeamComparisonProvider {
 
     private teamComparisonApiUrl: string;
 
-    constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig, private errorHandling: ApiErrorHandlingProvider) {
-        this.teamComparisonApiUrl = this.config.apiEndpoint + 'teamComparison';
+    constructor(private http: Http, private errorHandling: ApiErrorHandlingProvider) {
+        this.teamComparisonApiUrl = environment.apiEndpoint + 'teamComparison';
     }
 
     public getTeamComparison(seasonID: number, team1ID: number, team2ID: number): Observable<TeamComparison> {

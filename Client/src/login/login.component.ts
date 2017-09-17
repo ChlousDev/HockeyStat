@@ -14,7 +14,7 @@ export class LoginComponent {
     constructor(private authenticationProvider: AuthenticationProvider) {
     }
 
-    private login(): void {
+    public login(): void {
         this.authenticationProvider.login(this.userName, this.password).subscribe(user => {
         })
     }

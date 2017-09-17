@@ -1,15 +1,15 @@
 import { Team } from './team'
 
 export class StandingsEntry {
-    Position: number;
-    Team: Team;
-    Poinst: number;
-    Wins: number;
-    OTWins: number;
-    OTLosses: number;
-    Losses: number;
-    GoalsScored: number;
-    GoalsScoredAgainst: number;
-    GamesPlayed: number;
-    SortString: string;
+    position: number;
+    team: Team;
+    points: number;
+    wins: number;
+    otWins: number;
+    otLosses: number;
+    losses: number;
+    goalsScored: number;
+    goalsScoredAgainst: number;
+    gamesPlayed: number;
+    sortString: string;
 }

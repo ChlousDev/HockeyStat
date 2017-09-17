@@ -13,7 +13,7 @@
         <h6>{{'Season' | translate}}</h6>
         <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
           <md-option *ngFor="let season of seasons" [value]="season">
-            {{season.StartYear}} / {{season.StartYear+1}}
+            {{season.startYear}} / {{season.startYear+1}}
           </md-option>
         </md-select>
       </div>
@@ -23,7 +23,7 @@
         <h6>{{'Team' | translate}}</h6>
         <md-select [(ngModel)]="selectedTeam" style="width: 190px">
           <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
-            {{team.Name}}
+            {{team.name}}
           </md-option>
         </md-select>
       </div>
@@ -38,7 +38,7 @@
 <div *ngIf=isLoadingTeamStatistics>
   <md-spinner></md-spinner>
 </div>
-<div *ngIf="!isLoadingTeamStatistics && teamStatistics" style="margin-top: 15px">
+<div *ngIf="teamStatistics && !isLoadingTeamStatistics" style="margin-top: 15px">
   <div>
     <h3>
       {{'Results' | translate}}
@@ -59,38 +59,38 @@
       <tbody>
         <tr>
           <td style="width: 150px; text-align: left">{{'Games' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GamesPlayed.length}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.gamesPlayed.length}}</td>
           <td style="width: 100px; text-align: center"></td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'Wins' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.Wins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.WinsPercent | number: '1.0-0'}} % </td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.wins}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.winsPercent | number: '1.0-0'}} % </td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'OTWins' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTWins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTWinsPercent | number: '1.0-0'}} %</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.otWins}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.otWinsPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'PSWins' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSWins}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSWinsPercent | number: '1.0-0'}} %</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.psWins}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.psWinsPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'Losses' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.Losses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.LossesPercent | number: '1.0-0'}} %</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.losses}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.lossesPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'OTLosses' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTLosses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.OTLossesPercent | number: '1.0-0'}} %</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.otLosses}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.otLossesPercent | number: '1.0-0'}} %</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'PSLosses' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSLosses}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PSLossesPercent | number: '1.0-0'}} %</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.psLosses}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.psLossesPercent | number: '1.0-0'}} %</td>
         </tr>
       </tbody>
     </table>
@@ -115,18 +115,18 @@
       <tbody>
         <tr>
           <td style="width: 150px; text-align: left">{{'Points' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.Points}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.PointsPerGame | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.points}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.pointsPerGame | number: '1.1-1'}}</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'Goals' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScored}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredPerGame | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.goalsScored}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.goalsScoredPerGame | number: '1.1-1'}}</td>
         </tr>
         <tr>
           <td style="width: 150px; text-align: left">{{'GoalsAgainst' | translate}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredAgainst}}</td>
-          <td style="width: 100px; text-align: center">{{teamStatistics.GoalsScoredAgainstPerGame | number: '1.1-1'}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.goalsScoredAgainst}}</td>
+          <td style="width: 100px; text-align: center">{{teamStatistics.goalsScoredAgainstPerGame | number: '1.1-1'}}</td>
         </tr>
       </tbody>
     </table>
@@ -159,13 +159,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let game of teamStatistics.GamesPlayed | gamesorderby">
-          <td style="width: 150px">{{game.Date | date: 'dd.MM.yyyy' }} </td>
-          <td style="width: 200px">{{game.HomeTeam.Name}} </td>
-          <td style="width: 200px">{{game.GuestTeam.Name}} </td>
-          <td style="width: 70px; text-align: center">{{game.HomeScore}} : {{game.GuestScore}}</td>
-          <td style="width: 70px; text-align: center">{{game.OTHomeScore}} : {{game.OTGuestScore}}</td>
-          <td style="width: 70px; text-align: center">{{game.PSHomeScore}} : {{game.PSGuestScore}}</td>
+        <tr *ngFor="let game of teamStatistics.gamesPlayed | gamesorderby">
+          <td style="width: 150px">{{game.date | date: 'dd.MM.yyyy' }} </td>
+          <td style="width: 200px">{{game.homeTeam.name}} </td>
+          <td style="width: 200px">{{game.guestTeam.name}} </td>
+          <td style="width: 70px; text-align: center">{{game.homeScore}} : {{game.guestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.otHomeScore}} : {{game.otGuestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.psHomeScore}} : {{game.psGuestScore}}</td>
         </tr>
       </tbody>
     </table>

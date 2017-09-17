@@ -40,7 +40,7 @@ export class SeasonsComponent {
   }
 
   public updateSeason(season: Season): void {
-    if (season.StartYear && season.StartYear > 2010) {
+    if (season.startYear && season.startYear > 2010) {
       this.seasonProvider.saveSeason(season).subscribe(() => {
         this.init();
       }, () => {
@@ -50,7 +50,7 @@ export class SeasonsComponent {
   }
 
   public addSeason(): void {
-    if (this.newSeason.StartYear && this.newSeason.StartYear > 2010) {
+    if (this.newSeason.startYear && this.newSeason.startYear > 2010) {
       this.seasonProvider.saveSeason(this.newSeason).subscribe(() => {
         this.init();
       }, () => {

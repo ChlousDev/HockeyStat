@@ -12,7 +12,7 @@
       <h6>{{'Season' | translate}}</h6>
       <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
         <md-option *ngFor="let season of seasons" [value]="season">
-          {{season.StartYear}} / {{season.StartYear+1}}
+          {{season.startYear}} / {{season.startYear+1}}
         </md-option>
       </md-select>
     </div>
@@ -33,7 +33,7 @@
     <div fxFlex="20" style="margin-left: 30px">
       <div *ngIf="teams" fxFlex="row" fxLayoutWrap>
         <div *ngFor="let team of teams | teamsselectionorderby" fxFlex="25" fxLayoutGap="30px">
-          <md-checkbox [(ngModel)]="team.IsSelected" (change)="setChartData()" class="mat-primary">{{team.TeamName}}</md-checkbox>
+          <md-checkbox [(ngModel)]="team.isSelected" (change)="setChartData()" class="mat-primary">{{team.teamName}}</md-checkbox>
         </div>
         <div fxFlex="100" fxLayoutGap="30px">
           <md-checkbox [(ngModel)]="showAll" (change)="toggleShowAll()" class="mat-primary">{{'All' | translate}}</md-checkbox>

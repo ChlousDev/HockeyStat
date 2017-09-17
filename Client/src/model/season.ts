@@ -1,4 +1,4 @@
 export class Season{
-    ID: number;
-    StartYear: number;
+    id: number;
+    startYear: number;
 }

@@ -6,17 +6,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using HockeyStat.API.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using System.Net.Http;
 using System.Net;
-using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 
 namespace HockeyStat.API.Controllers
 {
     [Route("api/[controller]")]
-    public class UserController : ApiController
+    public class UserController : ControllerBase
     {
 
         private ConfigurationOptions configurationOptions;
@@ -27,28 +27,30 @@ namespace HockeyStat.API.Controllers
         }
 
         [HttpGet("login")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public User Login([FromQuery] string userName, [FromQuery] string password)
         {
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.NameIdentifier, userName));
             claims.Add(new Claim(ClaimTypes.Name, userName));
             User user = new User() { UserName = userName, Password = password };
-            if (userName == this.configurationOptions.UserName && password == this.configurationOptions.Password)
+            if (userName == this.configurationOptions.AdminUserName && password == this.configurationOptions.AdminPassword)
             {
                 claims.Add(new Claim(ClaimTypes.Role, "admin"));
                 user.IsAdmin = true;
             }
             ClaimsIdentity identity = new ClaimsIdentity(claims);
             ClaimsPrincipal principal = new ClaimsPrincipal(identity);
-            this.Context.Authentication.SignInAsync("HockeyStatAuthorization", principal, new AuthenticationProperties() { IsPersistent=true, ExpiresUtc=DateTime.UtcNow.AddYears(1) } );
+            this.Request.HttpContext.SignInAsync(ConfigurationOptions.AuthenticationScheme,  principal, new AuthenticationProperties() { IsPersistent=true, ExpiresUtc=DateTime.UtcNow.AddYears(1) } );
             return user;
         }
 
         [HttpGet("logout")]
-        public HttpResponseMessage Logout()
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Logout()
         {
-            this.Context.Authentication.SignOutAsync("HockeyStatAuthorization");
-            return this.Request.CreateResponse(HttpStatusCode.OK);
+            this.Request.HttpContext.SignOutAsync(ConfigurationOptions.AuthenticationScheme);
+            return this.StatusCode(StatusCodes.Status200OK, "OK");
         }
         
     }

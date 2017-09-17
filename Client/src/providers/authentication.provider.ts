@@ -2,8 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable, Subject } from 'rxjs/Rx';
 
-import { APP_CONFIG } from '../app/app.config.token';
-import { IAppConfig } from '../app/app.config.interface';
+import { environment } from '../environments/environment';
 
 import { ApiErrorHandlingProvider } from './apiErrorHandling.provider';
 
@@ -17,8 +16,8 @@ export class AuthenticationProvider {
     public isAdmin: boolean;
     public isAdminSubject: Subject<boolean> = new Subject();
 
-    constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig, private errorHandling: ApiErrorHandlingProvider) {
-        this.userApiUrl = this.config.apiEndpoint + 'user';
+    constructor(private http: Http, private errorHandling: ApiErrorHandlingProvider) {
+        this.userApiUrl = environment.apiEndpoint + 'user';
         this.setIsAdmin();
     }
 
@@ -35,7 +34,6 @@ export class AuthenticationProvider {
 
     public logout(): Observable<void> {
         var result: Observable<void> = this.http.get(this.userApiUrl + '/logout', { withCredentials: true })
-            .map((response) => response.json())
             ._catch(this.errorHandling.handleError);
         result.subscribe(() => {
             this.user = null;
@@ -46,7 +44,7 @@ export class AuthenticationProvider {
 
     public setIsAdmin(): void {
         if (this.user != null) {
-            this.isAdmin = this.user.IsAdmin
+            this.isAdmin = this.user.isAdmin
         }
         else {
             this.isAdmin = false;

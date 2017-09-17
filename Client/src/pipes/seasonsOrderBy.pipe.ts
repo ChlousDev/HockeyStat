@@ -9,9 +9,9 @@ import {Season} from '../model/season';
 export class SeasonsOrderByPipe {
   transform(array: Array<Season>, args: string): Array<Season> {
     array.sort((a: Season, b: Season) => {
-      if (a.StartYear > b.StartYear) {
+      if (a.startYear > b.startYear) {
         return -1;
-      } else if (a.StartYear < b.StartYear) {
+      } else if (a.startYear < b.startYear) {
         return 1;
       } else {
         return 0;

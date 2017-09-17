@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using HockeyStat.Model.DataAccess;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http.Formatting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -28,7 +27,6 @@ namespace HockeyStat.API
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables()
-                //.AddUserSecrets()
                 .AddJsonFile("secretsettings.json", optional: true, reloadOnChange: true);
             Configuration = builder.Build();
         }
@@ -41,10 +39,10 @@ namespace HockeyStat.API
             services.AddCors();
 
             // Add framework services.
-            services.AddMvc().AddWebApiConventions().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            services.AddMvc();
             services.AddRouting();
 
-            string connectionString =this.Configuration.GetValue<string>("ConnectionString");
+            string connectionString = this.Configuration.GetValue<string>("ConnectionString");
             services.AddDbContext<HockeyStatDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
@@ -52,13 +50,54 @@ namespace HockeyStat.API
 
             services.Configure<ConfigurationOptions>(Configuration);
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = ConfigurationOptions.AuthenticationScheme;
+            })
+            .AddCookie(ConfigurationOptions.AuthenticationScheme, options =>
+            {
+                options.LoginPath = new PathString("/api/User/Unauthorized/");
+                options.AccessDeniedPath = new PathString("/api/User/Unauthorized/");
+                options.Cookie.Name = ConfigurationOptions.AuthenticationCookieName;
+                options.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api") &&
+                            ctx.Response.StatusCode == (int)HttpStatusCode.OK)
+                        {
+                            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        }
+                        else
+                        {
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                        }
+                        return Task.FromResult(0);
+                    },
+                    OnRedirectToAccessDenied = ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api") &&
+                            ctx.Response.StatusCode == (int)HttpStatusCode.OK)
+                        {
+                            ctx.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                        }
+                        else
+                        {
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                        }
+                        return Task.FromResult(0);
+                    }
+                };
+
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseCors(builder =>
-            builder.WithOrigins("http://localhost:4200")
+            builder.AllowAnyOrigin()//.WithOrigins("http://localhost:4200")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .WithExposedHeaders("Set-Cookie")
@@ -82,47 +121,10 @@ namespace HockeyStat.API
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseCookieAuthentication(new CookieAuthenticationOptions()
-            {
-                AuthenticationScheme = "HockeyStatAuthorization",
-                LoginPath = new PathString("/api/User/Unauthorized/"),
-                AccessDeniedPath = new PathString("/api/User/Unauthorized/"),
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                CookieName = "HockeyStatAuthorization",
-                Events = new CookieAuthenticationEvents
-                {
-                    OnRedirectToLogin = ctx =>
-                    {
-                        if (ctx.Request.Path.StartsWithSegments("/api") &&
-                            ctx.Response.StatusCode == (int)HttpStatusCode.OK)
-                        {
-                            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                        }
-                        else
-                        {
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                        }
-                        return Task.FromResult(0);
-                    },
-                    OnRedirectToAccessDenied = ctx =>
-                    {
-                        if (ctx.Request.Path.StartsWithSegments("/api") &&
-                            ctx.Response.StatusCode == (int)HttpStatusCode.OK)
-                        {
-                            ctx.Response.StatusCode = (int)HttpStatusCode.Forbidden; 
-                        }
-                        else
-                        {
-                            ctx.Response.Redirect(ctx.RedirectUri);
-                        }
-                        return Task.FromResult(0);
-                    }
-                }
-            });
-
             app.UseMvc();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
         }
     }
 }

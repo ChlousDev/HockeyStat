@@ -40,7 +40,7 @@ export class TeamsComponent {
   }
 
   public updateTeam(team: Team): void {
-    if ((team.ShortName && team.ShortName.length > 0) && (team.Name && team.Name.length > 0)) {
+    if ((team.shortName && team.shortName.length > 0) && (team.name && team.name.length > 0)) {
       this.teamProvider.saveTeam(team).subscribe(() => {
         this.init();
       }, () => {
@@ -50,7 +50,7 @@ export class TeamsComponent {
   }
 
   public addTeam(): void {
-    if ((this.newTeam.ShortName && this.newTeam.ShortName.length > 0) && (this.newTeam.Name && this.newTeam.Name.length > 0)) {
+    if ((this.newTeam.shortName && this.newTeam.shortName.length > 0) && (this.newTeam.name && this.newTeam.name.length > 0)) {
       this.teamProvider.saveTeam(this.newTeam).subscribe(() => {
         this.init();
       }, () => {

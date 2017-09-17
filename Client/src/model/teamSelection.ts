@@ -1,5 +1,5 @@
 export class TeamSelection {
-    TeamID: number;
-    TeamName: string;
-    IsSelected: boolean;
+    teamID: number;
+    teamName: string;
+    isSelected: boolean;
 }

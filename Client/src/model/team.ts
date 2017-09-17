@@ -1,5 +1,5 @@
 export class Team{
-    ID:number;
-    Name:string;
-    ShortName:string;
+    id:number;
+    name:string;
+    shortName:string;
 }

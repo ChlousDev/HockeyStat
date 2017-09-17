@@ -12,7 +12,7 @@
       <h6>{{'Season' | translate}}</h6>
       <md-select [(ngModel)]="selectedSeason" (change)="selectedSeasonChanged()" style="width: 150px; margin-top: 10px">
         <md-option *ngFor="let season of seasons" [value]="season">
-          {{season.StartYear}} / {{season.StartYear+1}}
+          {{season.startYear}} / {{season.startYear+1}}
         </md-option>
       </md-select>
     </div>
@@ -46,12 +46,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let game of games">
-          <td style="width: 150px">{{game.Date | date: 'dd.MM.yyyy' }} </td>
-          <td style="width: 200px">{{game.HomeTeam.Name}} </td>
-          <td style="width: 200px">{{game.GuestTeam.Name}} </td>
-          <td style="width: 70px; text-align: center">{{game.HomeScore}} : {{game.GuestScore}}</td>
-          <td style="width: 70px; text-align: center">{{game.OTHomeScore}} : {{game.OTGuestScore}}</td>
-          <td style="width: 70px; text-align: center">{{game.PSHomeScore}} : {{game.PSGuestScore}}</td>
+          <td style="width: 150px">{{game.date | date: 'dd.MM.yyyy' }} </td>
+          <td style="width: 200px">{{game.homeTeam.name}} </td>
+          <td style="width: 200px">{{game.guestTeam.name}} </td>
+          <td style="width: 70px; text-align: center">{{game.homeScore}} : {{game.guestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.otHomeScore}} : {{game.otGuestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.psHomeScore}} : {{game.psGuestScore}}</td>
         </tr>
       </tbody>
     </table>
@@ -82,55 +82,55 @@
       <tbody>
         <tr>
           <td style="width: 150px">
-            <md2-datepicker class="datepickerWidth" [(ngModel)]="newGame.Date" format="dd.MM.y"></md2-datepicker>
+            <md2-datepicker class="datepickerWidth" [(ngModel)]="newGame.date" format="dd.MM.y"></md2-datepicker>
           </td>
           <td style="width: 200px">
-            <md-select [(ngModel)]="newGame.HomeTeam" style="width: 190px">
+            <md-select [(ngModel)]="newGame.homeTeam" style="width: 190px">
               <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
-                {{team.Name}}
+                {{team.name}}
               </md-option>
             </md-select>
           </td>
           <td style="width: 200px">
-            <md-select [(ngModel)]="newGame.GuestTeam" style="width: 190px">
+            <md-select [(ngModel)]="newGame.guestTeam" style="width: 190px">
               <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
-                {{team.Name}}
+                {{team.name}}
               </md-option>
             </md-select>
           </td>
           <td style="width: 70px; text-align: center">
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="newGame.HomeScore" style="width: 10px" (ngModelChange)="newGame.HomeScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="newGame.homeScore" style="width: 10px" (ngModelChange)="newGame.homeScore = convertToNumber($event)">
               </div>
             </md-input-container> :
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="newGame.GuestScore" style="width: 10px" (ngModelChange)="newGame.GuestScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="newGame.guestScore" style="width: 10px" (ngModelChange)="newGame.guestScore = convertToNumber($event)">
               </div>
             </md-input-container>
           </td>
           <td style="width: 70px; text-align: center">
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="newGame.OTHomeScore" style="width: 10px" (ngModelChange)="newGame.OTHomeScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="newGame.otHomeScore" style="width: 10px" (ngModelChange)="newGame.otHomeScore = convertToNumber($event)">
               </div>
             </md-input-container> :
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="newGame.OTGuestScore" style="width: 10px" (ngModelChange)="newGame.OTGuestScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="newGame.otGuestScore" style="width: 10px" (ngModelChange)="newGame.otGuestScore = convertToNumber($event)">
               </div>
             </md-input-container>
           </td>
           <td style="width: 70px; text-align: center">
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="newGame.PSHomeScore" style="width: 10px" (ngModelChange)="newGame.PSHomeScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="newGame.psHomeScore" style="width: 10px" (ngModelChange)="newGame.psHomeScore = convertToNumber($event)">
               </div>
             </md-input-container> :
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="newGame.PSGuestScore" style="width: 10px" (ngModelChange)="newGame.PSGuestScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="newGame.psGuestScore" style="width: 10px" (ngModelChange)="newGame.psGuestScore = convertToNumber($event)">
               </div>
             </md-input-container>
           </td>
@@ -142,55 +142,55 @@
         </tr>
         <tr *ngFor="let game of games">
           <td style="width: 150px">
-            <md2-datepicker class="datepickerWidth" [(ngModel)]="game.Date" format="dd.MM.y"></md2-datepicker>
+            <md2-datepicker class="datepickerWidth" [(ngModel)]="game.date" format="dd.MM.y"></md2-datepicker>
           </td>
           <td style="width: 200px">
-            <md-select [(ngModel)]="game.HomeTeam" style="width: 190px">
+            <md-select [(ngModel)]="game.homeTeam" style="width: 190px">
               <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
-                {{team.Name}}
+                {{team.name}}
               </md-option>
             </md-select>
           </td>
           <td style="width: 200px">
-            <md-select [(ngModel)]="game.GuestTeam" style="width: 190px">
+            <md-select [(ngModel)]="game.guestTeam" style="width: 190px">
               <md-option *ngFor="let team of teams" [value]="team">
-                {{team.Name}}
+                {{team.name}}
               </md-option>
             </md-select>
           </td>
           <td style="width: 70px; text-align: center">
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="game.HomeScore" style="width: 10px" (ngModelChange)="game.HomeScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="game.homeScore" style="width: 10px" (ngModelChange)="game.homeScore = convertToNumber($event)">
               </div>
             </md-input-container> :
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="game.GuestScore" style="width: 10px" (ngModelChange)="game.GuestScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="game.guestScore" style="width: 10px" (ngModelChange)="game.guestScore = convertToNumber($event)">
               </div>
             </md-input-container>
           </td>
           <td style="width: 70px; text-align: center">
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="game.OTHomeScore" style="width: 10px" (ngModelChange)="game.OTHomeScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="game.otHomeScore" style="width: 10px" (ngModelChange)="game.otHomeScore = convertToNumber($event)">
               </div>
             </md-input-container> :
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="game.OTGuestScore" style="width: 10px" (ngModelChange)="game.OTGuestScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="game.otGuestScore" style="width: 10px" (ngModelChange)="game.otGuestScore = convertToNumber($event)">
               </div>
             </md-input-container>
           </td>
           <td style="width: 70px; text-align: center">
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="game.PSHomeScore" style="width: 10px" (ngModelChange)="game.PSHomeScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="game.psHomeScore" style="width: 10px" (ngModelChange)="game.psHomeScore = convertToNumber($event)">
               </div>
             </md-input-container> :
             <md-input-container>
               <div fxLayout="row">
-                <input mdInput [(ngModel)]="game.PSGuestScore" style="width: 10px" (ngModelChange)="game.PSGuestScore = convertToNumber($event)">
+                <input mdInput [(ngModel)]="game.psGuestScore" style="width: 10px" (ngModelChange)="game.psGuestScore = convertToNumber($event)">
               </div>
             </md-input-container>
           </td>

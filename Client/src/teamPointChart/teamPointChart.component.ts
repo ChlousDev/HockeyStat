@@ -66,7 +66,7 @@ export class TeamPointChartComponent {
     this.isLoadingCatalogData = true;
     this.teamProvider.getTeams().subscribe(teams => {
       this.teams = [];
-      teams.forEach((team) => { this.teams.push({ TeamName: team.ShortName, TeamID: team.ID, IsSelected: true }); });
+      teams.forEach((team) => { this.teams.push({ teamName: team.shortName, teamID: team.id, isSelected: true }); });
       this.isLoadingCatalogData = false;
       this.loadTeamPointChart();
     })
@@ -75,7 +75,7 @@ export class TeamPointChartComponent {
   private loadTeamPointChart(): void {
     if ((this.selectedSeason)) {
       this.isLoadingTeamPointChart = true;
-      this.teamPointChartProvider.getTeamPointChart(this.selectedSeason.ID).subscribe(teamPointChart => {
+      this.teamPointChartProvider.getTeamPointChart(this.selectedSeason.id).subscribe(teamPointChart => {
         this.teamPointChart = teamPointChart;
         this.loadLabels();
       })
@@ -83,7 +83,7 @@ export class TeamPointChartComponent {
   }
 
   public toggleShowAll(): void {
-    this.teams.forEach(t => t.IsSelected = this.showAll);
+    this.teams.forEach(t => t.isSelected = this.showAll);
     this.setChartData();
   }
 
@@ -96,10 +96,10 @@ export class TeamPointChartComponent {
       var maxLabel: number = -1;
       var showSerie: boolean;
       var serieLabel: string;
-      this.teamPointChart.Series.forEach(serie => {
-        if (serie.Team) {
-          showSerie = this.teams.findIndex(t => t.TeamID == serie.Team.ID && t.IsSelected) >= 0;
-          serieLabel = serie.Team.ShortName;
+      this.teamPointChart.series.forEach(serie => {
+        if (serie.team) {
+          showSerie = this.teams.findIndex(t => t.teamID == serie.team.id && t.isSelected) >= 0;
+          serieLabel = serie.team.shortName;
           this.showAll = this.showAll && showSerie;
         }
         else {
@@ -109,7 +109,7 @@ export class TeamPointChartComponent {
         if (showSerie) {
           var data: number[] = [];
           var label: number = 0;
-          serie.Points.forEach(points => {
+          serie.points.forEach(points => {
             data.push(points);
             if (label > maxLabel) {
               lineChartLabels.push('' + label);

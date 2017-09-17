@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 using HockeyStat.Model.DataAccess;
 using HockeyStat.Model.Logic;
 using HockeyStat.Model.Model;
-using HockeyStat.API.Util;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace HockeyStat.API.Controllers
 {
     [Route("api/[controller]")]
-    public class TeamStatisticsController : ApiController
+    public class TeamStatisticsController : ControllerBase
     {
         private HockeyStatDataAccess dataAccess;
 
@@ -25,20 +24,21 @@ namespace HockeyStat.API.Controllers
         }
 
         [HttpGet("Season/{seasonID}/Team/{teamID}")]
-        public HttpResponseMessage Get(long seasonID, long teamID)
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Get(long seasonID, long teamID)
         {
-            HttpResponseMessage response = new HttpResponseMessage();
+            ObjectResult response = null;
             Season season = this.dataAccess.LoadSeason(seasonID);
             Team team = this.dataAccess.LoadTeam(teamID);
             if ((season == null) || (team == null))
             {
-                response = this.Request.CreateResponse(HttpStatusCode.NotFound);
+                response = this.StatusCode(StatusCodes.Status404NotFound, "Not Found");
             }
             else
             {
                 TeamAnalizer teamAnalizer = new TeamAnalizer(season, team, this.dataAccess);
                 TeamStatistics statistics = teamAnalizer.CreateStatistics();
-                response = ResponseCreator.CreateNoCacheResponse(this.Request, statistics);
+                response = this.StatusCode(StatusCodes.Status200OK, statistics);
             }
             return response;
         }

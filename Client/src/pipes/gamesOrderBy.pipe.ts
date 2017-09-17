@@ -9,9 +9,9 @@ import {Game} from '../model/game';
 export class GamesOrderByPipe {
   transform(array: Array<Game>, args: string): Array<Game> {
     array.sort((a: Game, b: Game) => {
-      if (a.Date > b.Date) {
+      if (a.date > b.date) {
         return -1;
-      } else if (a.Date < b.Date) {
+      } else if (a.date < b.date) {
         return 1;
       } else {
         return 0;

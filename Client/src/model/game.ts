@@ -2,26 +2,26 @@ import { Team } from './Team';
 import { Season } from './Season';
 
 export class Game {
-    ID: number;
-    Date: Date;
-    HomeScore: number;
-    GuestScore: number;
-    OTHomeScore: number;
-    OTGuestScore: number;
-    PSHomeScore: number;
-    PSGuestScore: number;
-    HomeTeam: Team;
-    GuestTeam: Team;
-    Season: Season;
+    id: number;
+    date: Date;
+    homeScore: number;
+    guestScore: number;
+    otHomeScore: number;
+    otGuestScore: number;
+    psHomeScore: number;
+    psGuestScore: number;
+    homeTeam: Team;
+    guestTeam: Team;
+    season: Season;
 
     constructor(date: Date) {
-        this.Date = date;
-        this.GuestScore = 0;
-        this.HomeScore = 0;
-        this.OTGuestScore = 0;
-        this.OTHomeScore = 0;
-        this.PSGuestScore = 0;
-        this.PSHomeScore = 0;
+        this.date = date;
+        this.guestScore = 0;
+        this.homeScore = 0;
+        this.otGuestScore = 0;
+        this.otHomeScore = 0;
+        this.psGuestScore = 0;
+        this.psHomeScore = 0;
     }
 }
 

@@ -21,8 +21,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let team of teams | teamsorderby">
-          <td style="width: 75px">{{team.ShortName}}</td>
-          <td style="width: 200px">{{team.Name}}</td>
+          <td style="width: 75px">{{team.shortName}}</td>
+          <td style="width: 200px">{{team.name}}</td>
         </tr>
       </tbody>
     </table>
@@ -42,12 +42,12 @@
         <tr>
           <td style="width: 75px">
             <md-input-container>
-              <input mdInput [(ngModel)]="newTeam.ShortName">
+              <input mdInput [(ngModel)]="newTeam.shortName">
             </md-input-container>
           </td>
           <td style="width: 200px">
             <md-input-container>
-              <input mdInput [(ngModel)]="newTeam.Name">
+              <input mdInput [(ngModel)]="newTeam.name">
             </md-input-container>
           </td>
           <td>
@@ -59,12 +59,12 @@
         <tr *ngFor="let team of teams | teamsorderby">
           <td style="width: 75px">
             <md-input-container>
-              <input mdInput [(ngModel)]="team.ShortName">
+              <input mdInput [(ngModel)]="team.shortName">
             </md-input-container>
           </td>
           <td style="width: 200px">
             <md-input-container>
-              <input mdInput [(ngModel)]="team.Name">
+              <input mdInput [(ngModel)]="team.name">
             </md-input-container>
           </td>
           <td>

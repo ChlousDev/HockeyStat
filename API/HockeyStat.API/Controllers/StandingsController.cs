@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 using HockeyStat.Model.DataAccess;
 using HockeyStat.Model.Logic;
 using HockeyStat.Model.Model;
-using HockeyStat.API.Util;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace HockeyStat.API.Controllers
 {
     [Route("api/[controller]")]
-    public class StandingsController : ApiController
+    public class StandingsController : ControllerBase
     {
         private HockeyStatDataAccess dataAccess;
 
@@ -25,19 +24,20 @@ namespace HockeyStat.API.Controllers
         }
 
         [HttpGet("Season/{seasonID}/Date/{date}")]
-        public HttpResponseMessage Get(long seasonID, DateTime date)
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Get(long seasonID, DateTime date)
         {
-            HttpResponseMessage response = new HttpResponseMessage();
+            ObjectResult response = null;
             Season season = this.dataAccess.LoadSeason(seasonID);
             if(season==null)
             {
-                response = this.Request.CreateResponse(HttpStatusCode.NotFound);
+                response = this.StatusCode(StatusCodes.Status404NotFound, "Not Found");
             }
             else
             {
                 StandingsCalculation standingsCalculation = new StandingsCalculation(season, date, this.dataAccess);
                 Standings standings = standingsCalculation.CalculateStanding();
-                response = ResponseCreator.CreateNoCacheResponse(this.Request, standings);
+                response = this.StatusCode(StatusCodes.Status200OK, standings);
             }
             return response;
         }

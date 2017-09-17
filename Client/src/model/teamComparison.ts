@@ -3,18 +3,18 @@ import { Team } from './team';
 import { Game } from './game';
 
 export class TeamComparison {
-    Season: Season;
-    Team1: Team;
-    Team2: Team;
-    GamesPlayed: Game[];
-    PointsTeam1: number;
-    PointsTeam2: number;
-    WinsTeam1: number;
-    OTWinsTeam1: number;
-    PSWinsTeam1: number;
-    WinsTeam2: number;
-    OTWinsTeam2: number;
-    PSWinsTeam2: number;
-    GoalsTeam1: number;
-    GoalsTeam2: number;
+    season: Season;
+    team1: Team;
+    team2: Team;
+    gamesPlayed: Game[];
+    pointsTeam1: number;
+    pointsTeam2: number;
+    winsTeam1: number;
+    otWinsTeam1: number;
+    psWinsTeam1: number;
+    winsTeam2: number;
+    otWinsTeam2: number;
+    psWinsTeam2: number;
+    goalsTeam1: number;
+    goalsTeam2: number;
 }

@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 using HockeyStat.Model.DataAccess;
 using HockeyStat.Model.Logic;
 using HockeyStat.Model.Model;
-using HockeyStat.API.Util;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace HockeyStat.API.Controllers
 {
     [Route("api/[controller]")]
-    public class TeamComparisonController : ApiController
+    public class TeamComparisonController : ControllerBase
     {
         private HockeyStatDataAccess dataAccess;
 
@@ -25,21 +24,22 @@ namespace HockeyStat.API.Controllers
         }
 
         [HttpGet("Season/{seasonID}/Team1/{team1ID}/Team2/{team2ID}")]
-        public HttpResponseMessage Get(long seasonID, long team1ID, long team2ID)
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Get(long seasonID, long team1ID, long team2ID)
         {
-            HttpResponseMessage response = new HttpResponseMessage();
+            ObjectResult response = null;
             Season season = this.dataAccess.LoadSeason(seasonID);
             Team team1 = this.dataAccess.LoadTeam(team1ID);
             Team team2 = this.dataAccess.LoadTeam(team2ID);
             if ((season == null) || (team1 == null) || (team2 == null))
             {
-                response = this.Request.CreateResponse(HttpStatusCode.NotFound);
+                response = this.StatusCode(StatusCodes.Status404NotFound, "Not Found");
             }
             else
             {
                 TeamComparator comparator = new TeamComparator(season, team1, team2, this.dataAccess);
                 TeamComparison comparison = comparator.CompareTeams();
-                response = ResponseCreator.CreateNoCacheResponse(this.Request, comparison);
+                response = this.StatusCode(StatusCodes.Status200OK, comparison);
             }
             return response;
         }

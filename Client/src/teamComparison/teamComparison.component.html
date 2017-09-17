@@ -13,7 +13,7 @@
         <h6>{{'Season'  | translate}}</h6>
         <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
           <md-option *ngFor="let season of seasons" [value]="season">
-            {{season.StartYear}} / {{season.StartYear+1}}
+            {{season.startYear}} / {{season.startYear+1}}
           </md-option>
         </md-select>
       </div>
@@ -23,7 +23,7 @@
         <h6>{{'FirstTeam' | translate}}</h6>
         <md-select [(ngModel)]="team1" style="width: 190px">
           <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
-            {{team.Name}}
+            {{team.name}}
           </md-option>
         </md-select>
       </div>
@@ -31,7 +31,7 @@
         <h6>{{'Second' | translate}}</h6>
         <md-select [(ngModel)]="team2" style="width: 190px">
           <md-option *ngFor="let team of teams | teamsorderby" [value]="team">
-            {{team.Name}}
+            {{team.name}}
           </md-option>
         </md-select>
       </div>
@@ -46,7 +46,7 @@
 <div *ngIf=isLoadingTeamComparison>
   <md-spinner></md-spinner>
 </div>
-<div *ngIf="!isLoadingTeamComparison && teamComparison" style="margin-top: 15px">
+<div *ngIf="teamComparison && !isLoadingTeamComparison" style="margin-top: 15px">
   <div>
     <h3>
       {{'Overview' | translate}}
@@ -57,45 +57,45 @@
           <th style="width: 250px;">
           </th>
           <th style="width: 200px;  text-align: right">
-            <h6>{{teamComparison.Team1.Name}}</h6>
+            <h6>{{teamComparison.team1.name}}</h6>
           </th>
           <th style="width: 8px; text-align: center">
           </th>
           <th style="width: 200px">
-            <h6>{{teamComparison.Team2.Name}}</h6>
+            <h6>{{teamComparison.team2.name}}</h6>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td style="width: 250px; text-align: left">{{'Points' | translate}}</td>
-          <td style="width: 200px; text-align: right">{{teamComparison.PointsTeam1}}</td>
+          <td style="width: 200px; text-align: right">{{teamComparison.pointsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
-          <td style="width: 200px; text-align: left">{{teamComparison.PointsTeam2}}</td>
+          <td style="width: 200px; text-align: left">{{teamComparison.pointsTeam2}}</td>
         </tr>
         <tr>
           <td style="width: 250px; text-align: left">{{'Wins' | translate}}</td>
-          <td style="width: 200px; text-align: right">{{teamComparison.WinsTeam1}}</td>
+          <td style="width: 200px; text-align: right">{{teamComparison.winsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
-          <td style="width: 200px; text-align: left">{{teamComparison.WinsTeam2}}</td>
+          <td style="width: 200px; text-align: left">{{teamComparison.winsTeam2}}</td>
         </tr>
         <tr>
           <td style="width: 250px; text-align: left">{{'OTWins' | translate}}</td>
-          <td style="width: 200px; text-align: right">{{teamComparison.OTWinsTeam1}}</td>
+          <td style="width: 200px; text-align: right">{{teamComparison.otWinsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
-          <td style="width: 200px; text-align: left">{{teamComparison.OTWinsTeam2}}</td>
+          <td style="width: 200px; text-align: left">{{teamComparison.otWinsTeam2}}</td>
         </tr>
         <tr>
           <td style="width: 250px; text-align: left">{{'PSWins' | translate}}</td>
-          <td style="width: 200px; text-align: right">{{teamComparison.PSWinsTeam1}}</td>
+          <td style="width: 200px; text-align: right">{{teamComparison.psWinsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
-          <td style="width: 200px; text-align: left">{{teamComparison.PSWinsTeam2}}</td>
+          <td style="width: 200px; text-align: left">{{teamComparison.psWinsTeam2}}</td>
         </tr>
          <tr>
           <td style="width: 250px; text-align: left">{{'Goals' | translate}}</td>
-          <td style="width: 200px; text-align: right">{{teamComparison.GoalsTeam1}}</td>
+          <td style="width: 200px; text-align: right">{{teamComparison.goalsTeam1}}</td>
           <td style="width: 8px; text-align: center">:</td>
-          <td style="width: 200px; text-align: left">{{teamComparison.GoalsTeam2}}</td>
+          <td style="width: 200px; text-align: left">{{teamComparison.goalsTeam2}}</td>
         </tr>
       </tbody>
     </table>
@@ -128,13 +128,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let game of teamComparison.GamesPlayed | gamesorderby">
-          <td style="width: 150px">{{game.Date | date: 'dd.MM.yyyy' }} </td>
-          <td style="width: 200px">{{game.HomeTeam.Name}} </td>
-          <td style="width: 200px">{{game.GuestTeam.Name}} </td>
-          <td style="width: 70px; text-align: center">{{game.HomeScore}} : {{game.GuestScore}}</td>
-          <td style="width: 70px; text-align: center">{{game.OTHomeScore}} : {{game.OTGuestScore}}</td>
-          <td style="width: 70px; text-align: center">{{game.PSHomeScore}} : {{game.PSGuestScore}}</td>
+        <tr *ngFor="let game of teamComparison.gamesPlayed | gamesorderby">
+          <td style="width: 150px">{{game.date | date: 'dd.MM.yyyy' }} </td>
+          <td style="width: 200px">{{game.homeTeam.name}} </td>
+          <td style="width: 200px">{{game.guestTeam.name}} </td>
+          <td style="width: 70px; text-align: center">{{game.homeScore}} : {{game.guestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.otHomeScore}} : {{game.otGuestScore}}</td>
+          <td style="width: 70px; text-align: center">{{game.psHomeScore}} : {{game.psGuestScore}}</td>
         </tr>
       </tbody>
     </table>

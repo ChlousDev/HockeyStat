@@ -2,8 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { APP_CONFIG } from '../app/app.config.token';
-import { IAppConfig } from '../app/app.config.interface';
+import { environment } from '../environments/environment';
 
 import { ApiErrorHandlingProvider } from './apiErrorHandling.provider';
 
@@ -15,8 +14,8 @@ export class GameProvider {
 
     private gameApiUrl: string;
 
-    constructor(private http: Http, @Inject(APP_CONFIG) private config: IAppConfig, private errorHandling: ApiErrorHandlingProvider) {
-        this.gameApiUrl = this.config.apiEndpoint + 'game';
+    constructor(private http: Http, private errorHandling: ApiErrorHandlingProvider) {
+        this.gameApiUrl = environment.apiEndpoint + 'game';
     }
 
     public getGames(seasonID: number, page: number, pageSize: number): Observable<PagedList<Game>> {
@@ -27,22 +26,19 @@ export class GameProvider {
 
     public saveGame(game: Game): Observable<void> {
         var result: Observable<void> = null;
-        if (game.ID > 0) {
+        if (game.id > 0) {
             result = this.http.put(this.gameApiUrl, game, { withCredentials: true })
-                .map((response) => response.json())
                 ._catch(this.errorHandling.handleError);
         }
         else {
             result = this.http.post(this.gameApiUrl, game, { withCredentials: true })
-                .map((response) => response.json())
                 ._catch(this.errorHandling.handleError);
         }
         return result;
     }
 
     public deleteGame(game: Game): Observable<void> {
-        return this.http.delete(this.gameApiUrl + '/' + game.ID, { withCredentials: true })
-            .map((response) => response.json())
+        return this.http.delete(this.gameApiUrl + '/' + game.id, { withCredentials: true })
             ._catch(this.errorHandling.handleError);
     }
 }

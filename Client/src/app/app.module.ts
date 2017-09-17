@@ -9,9 +9,7 @@ import { Md2Module } from 'md2';
 import { ChartsModule } from 'ng2-charts';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { AppConfig } from './app.config';
-import { APP_CONFIG } from './app.config.token';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { TeamProvider } from '../providers/team.provider';
 import { SeasonProvider } from '../providers/season.provider';
@@ -64,6 +62,7 @@ export function HttpLoaderFactory(http: Http) {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     ChartsModule,
@@ -122,7 +121,6 @@ export function HttpLoaderFactory(http: Http) {
     ])
   ],
   providers: [
-    { provide: APP_CONFIG, useValue: AppConfig },
     ApiErrorHandlingProvider,
     TeamProvider,
     SeasonProvider,

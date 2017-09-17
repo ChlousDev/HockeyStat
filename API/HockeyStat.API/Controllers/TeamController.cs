@@ -7,15 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using HockeyStat.Model.DataAccess;
 using HockeyStat.Model.Model;
-using HockeyStat.API.Util;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace HockeyStat.API.Controllers
 {
     [Route("api/[controller]")]
-    public class TeamController : ApiController
+    public class TeamController : ControllerBase
     {
         private HockeyStatDataAccess dataAccess;
 
@@ -25,42 +24,44 @@ namespace HockeyStat.API.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage Get()
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Get()
         {
-            return ResponseCreator.CreateNoCacheResponse(this.Request, this.dataAccess.LoadTeams());
+            return this.StatusCode(StatusCodes.Status200OK, this.dataAccess.LoadTeams());
         }
 
-        [Authorize(Roles = "admin")]
         [HttpPut]
-        public HttpResponseMessage Put([FromBody] Team team)
+        [Authorize(AuthenticationSchemes = ConfigurationOptions.AuthenticationScheme, Roles = "admin")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Put([FromBody] Team team)
         {
-            HttpResponseMessage response = null;
+            ObjectResult response = null;
             if (team.ID > 0)
             {
                 this.dataAccess.SaveTeam(team);
-                response = this.Request.CreateResponse(HttpStatusCode.OK);
+                response = this.StatusCode(StatusCodes.Status200OK, "OK");
             }
             else
             {
-                response = this.Request.CreateResponse(HttpStatusCode.BadRequest, "New items have to be created with a Http-POST");
+                response = this.StatusCode(StatusCodes.Status400BadRequest, "New items have to be created with a Http-POST");
             }
             return response;
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
-        public HttpResponseMessage Post([FromBody] Team team)
+        [Authorize(AuthenticationSchemes = ConfigurationOptions.AuthenticationScheme, Roles = "admin")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public ObjectResult Post([FromBody] Team team)
         {
-            HttpResponseMessage response = null;
+            ObjectResult response = null;
             if (team.ID <= 0)
             {
                 long teamID = this.dataAccess.SaveTeam(team);
-                response = this.Request.CreateResponse(HttpStatusCode.Created);
-                response.Headers.Location = new Uri(this.Request.RequestUri + "/" + teamID.ToString());
+                response = this.CreatedAtAction("Post", new { id = teamID }, team);
             }
             else
             {
-                response = this.Request.CreateResponse(HttpStatusCode.BadRequest, "Existing items can only be Updated with a Http-PUT");
+                response = this.StatusCode(StatusCodes.Status400BadRequest, "Existing items can only be Updated with a Http-PUT");
             }
             return response;
         }

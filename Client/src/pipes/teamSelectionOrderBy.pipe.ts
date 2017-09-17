@@ -9,9 +9,9 @@ import {TeamSelection} from '../model/TeamSelection';
 export class TeamSelectionOrderByPipe {
   transform(array: Array<TeamSelection>, args: string): Array<TeamSelection> {
     array.sort((a: TeamSelection, b: TeamSelection) => {
-      if (a.TeamName < b.TeamName) {
+      if (a.teamName < b.teamName) {
         return -1;
-      } else if (a.TeamName > b.TeamName) {
+      } else if (a.teamName > b.teamName) {
         return 1;
       } else {
         return 0;

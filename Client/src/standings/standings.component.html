@@ -13,7 +13,7 @@
         <h6>{{'Season' | translate}}</h6>
         <md-select [(ngModel)]="selectedSeason" style="width: 150px; margin-top: 10px">
           <md-option *ngFor="let season of seasons" [value]="season">
-            {{season.StartYear}} / {{season.StartYear+1}}
+            {{season.startYear}} / {{season.startYear+1}}
           </md-option>
         </md-select>
       </div>
@@ -72,19 +72,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let standingsEntry of standings.Entries" [ngClass]="{qualificationLine: standingsEntry.Position==8 , qualificationLine2:standingsEntry.Position==9}">
-          <td style="width: 20px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Position}}.</td>
-          <td style="width: 5px" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}"></td>
-          <td style="width: 200px" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Team.Name}}</td>
-          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.GamesPlayed}}</td>
-          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Wins}}</td>
-          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.OTWins}}</td>
-          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.OTLosses}}</td>
-          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Losses}}</td>
-          <td style="width: 22px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.GoalsScored}} </td>
-          <td style="width: 8px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">:</td>
-          <td style="width: 22px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.GoalsScoredAgainst}}</td>
-          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.Position==8 , underneathQualificationLine: standingsEntry.Position==9}">{{standingsEntry.Points}}</td>
+        <tr *ngFor="let standingsEntry of standings.entries" [ngClass]="{qualificationLine: standingsEntry.position==8 , qualificationLine2:standingsEntry.position==9}">
+          <td style="width: 20px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.position}}.</td>
+          <td style="width: 5px" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}"></td>
+          <td style="width: 200px" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.team.name}}</td>
+          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.gamesPlayed}}</td>
+          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.wins}}</td>
+          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.otWins}}</td>
+          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.otLosses}}</td>
+          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.losses}}</td>
+          <td style="width: 22px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.goalsScored}} </td>
+          <td style="width: 8px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">:</td>
+          <td style="width: 22px; text-align: right" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.goalsScoredAgainst}}</td>
+          <td style="width: 80px; text-align: center" [ngClass]="{aboveQualificationLine: standingsEntry.position==8 , underneathQualificationLine: standingsEntry.position==9}">{{standingsEntry.points}}</td>
         </tr>
       </tbody>
     </table>
