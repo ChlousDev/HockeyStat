@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyStat.API", "HockeySta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HockeyStat.Model", "HockeyStat.Model\HockeyStat.Model.csproj", "{6430EDC2-5705-43F2-96B0-5C78B8805F0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HockeyStat.MoveData", "HockeyStat.MoveData\HockeyStat.MoveData.csproj", "{B2432E03-1724-49F7-8769-6096F50FDEC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6430EDC2-5705-43F2-96B0-5C78B8805F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6430EDC2-5705-43F2-96B0-5C78B8805F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6430EDC2-5705-43F2-96B0-5C78B8805F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2432E03-1724-49F7-8769-6096F50FDEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2432E03-1724-49F7-8769-6096F50FDEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2432E03-1724-49F7-8769-6096F50FDEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2432E03-1724-49F7-8769-6096F50FDEC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
