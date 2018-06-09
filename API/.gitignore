@@ -286,4 +286,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-HockeyStat.API/secretsettings.json
+*/secretsettings.json
