@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Data.Sqlite;
 
 namespace HockeyStat.API
 {
@@ -43,8 +44,23 @@ namespace HockeyStat.API
             services.AddRouting();
 
             string connectionString = this.Configuration.GetValue<string>("ConnectionString");
+            string password = this.Configuration.GetValue<string>("DbPassword");
+
+            DbContextOptionsBuilder<HockeyStatDbContext> sqliteOptionsBuilder = new DbContextOptionsBuilder<HockeyStatDbContext>();
+            SqliteConnection connection = new SqliteConnection(connectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT quote($password);";
+            command.Parameters.AddWithValue("$password", password);
+            var quotedPassword = (string)command.ExecuteScalar();
+
+            command.CommandText = "PRAGMA key = " + quotedPassword;
+            command.Parameters.Clear();
+            command.ExecuteNonQuery();
+            
             services.AddDbContext<HockeyStatDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlite(connection));
 
             services.AddTransient<HockeyStatDataAccess, HockeyStatDataAccess>();
 
